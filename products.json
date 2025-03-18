@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Product 1",
+    "price": "$10",
+    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
+    "description": "This is a description of Product 1."
+  },
+  {
+    "name": "arpit",
+    "price": "45",
+    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
+    "description": "wewe",
+    "id": 2
+  },
+  {
+    "name": "gh",
+    "price": "565",
+    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
+    "description": "hyh",
+    "id": 3
+  },
+  {
+    "name": "fgf",
+    "price": "33",
+    "image": "dfdgdfg",
+    "description": "rr",
+    "id": 4
+  },
+  {
+    "name": "arpit",
+    "price": "45",
+    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
+    "description": "hh",
+    "id": 5
+  },
+  {
+    "name": "arpit",
+    "price": "66",
+    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
+    "description": "45646",
+    "id": 6
+  }
+]

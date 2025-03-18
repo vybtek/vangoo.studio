@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+    <link href="style.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+    <script src="headerFooter.js"></script>
+  </head>
+  <body>
+    <!-- Header area section start -->
+    <special-header></special-header>
+
+    <!-- banner area section -->
+    <section class="max-w-9xl mx-auto px-6 md:px-12 lg:px-16 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <!-- Left Content -->
+        <div class="text-left">
+          <p class="text-sm font-semibold text-black flex items-center gap-1">
+            <span class="text-yellow-500 text-lg">⭐</span> 2023 Top Quality
+            Award
+          </p>
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight mt-3">
+            Leave the
+            <span class="relative inline-block">
+              <span class="text-orange-500 italic font-semibold">Season</span>
+              <!-- <span class="absolute -top-4 left-0 text-sm italic text-black">new items</span> -->
+            </span>
+            in Furnob style
+          </h1>
+          <p class="text-gray-600 text-lg mt-4">
+            Ut lobortis, ex vitae lobortis cursus, elit nisi facilisis urna, at
+            porttitor eros leo ac ex. Nunc molestie turpis varius purus accumsan
+            maximus. Nam ut libero aliquet, consequat ipsum sit amet, aliquet
+            odio.
+          </p>
+          <a
+            href="#"
+            class="mt-6 inline-block border-2 border-black px-3 py-1 text-lg font-medium hover:bg-black hover:text-white transition-all"
+          >
+            Shop Collection →
+          </a>
+        </div>
+        <!-- Right Image -->
+        <div class="flex justify-center">
+          <img
+            src="https://klbtheme.com/furnob/wp-content/uploads/2022/01/banner-image-22.jpg"
+            alt="Chair"
+            class="w-full max-w-lg md:max-w-md"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- designers section start -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <!-- Heading -->
+        <div class="text-center">
+            <h2 class="text-2xl md:text-3xl font-semibold">Top Designers With <span class="italic">'Furnob'</span></h2>
+            <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+                Aliquam vel maximus nulla. Etiam viverra nulla ac tellus auctor tempus. Donec euismod commodo mi, ac auctor tortor aliquam in.
+            </p>
+        </div>
+
+        <!-- Designers Grid -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Designer Card 1 -->
+            <div class="bg-white overflow-hidden">
+                <img src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-03.jpg" alt="Monique Greer" class="w-full h-80 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold">Monique Greer</h3>
+                    <p class="text-gray-600 text-sm">British Interior Designer</p>
+                </div>
+            </div>
+
+            <!-- Designer Card 2 -->
+            <div class="bg-white overflow-hidden">
+                <img src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-01.jpg" alt="Britney Cooper" class="w-full h-80 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold">Britney Cooper</h3>
+                    <p class="text-gray-600 text-sm">Italian Interior Designer</p>
+                </div>
+            </div>
+
+            <!-- Designer Card 3 -->
+            <div class="bg-white overflow-hidden">
+                <img src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-02.jpg" alt="Raymond Atkins" class="w-full h-80 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold">Raymond Atkins</h3>
+                    <p class="text-gray-600 text-sm">French Product Designer</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Review Section -->
+        <div class="mt-12 text-center">
+            <h3 class="text-xl md:text-2xl font-semibold">What do our customers think about us?</h3>
+            <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+                Aliquam vel maximus nulla. Etiam viverra nulla ac tellus auctor tempus. Donec euismod commodo mi, ac auctor tortor aliquam.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- <h1>Product List</h1>
+    <a href="add-product.html">Add New Product</a>
+    <div id="product-list"></div> -->
+    <!-- Footer section start -->
+    <special-footer></special-footer>
+    <script>
+      async function fetchProducts() {
+        const response = await fetch("http://localhost:5000/products");
+        const products = await response.json();
+        const productList = document.getElementById("product-list");
+        productList.innerHTML = "";
+
+        products.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h2>${product.name}</h2>
+                    <p>${product.price}</p>
+                    <p>${product.description}</p>
+                `;
+          productList.appendChild(productCard);
+        });
+      }
+
+      fetchProducts();
+    </script>
+  </body>
+</html>

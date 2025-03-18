@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="product-details"></div>
+
+    <script>
+        async function loadProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("id");
+
+            let products = JSON.parse(localStorage.getItem("products")) || [];
+            const product = products.find(p => p.id == productId);
+
+            if (product) {
+                document.getElementById("product-details").innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h1>${product.name}</h1>
+                    <p>${product.price}</p>
+                    <p>${product.description}</p>
+                    <a href="index.html">Back to Products</a>
+                `;
+            } else {
+                document.getElementById("product-details").innerHTML = "<p>Product not found.</p>";
+            }
+        }
+
+        loadProductDetails();
+    </script>
+</body>
+</html>
