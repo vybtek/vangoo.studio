@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vangoo</title>
     <link href="style.css" rel="stylesheet" />
-
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -24,7 +28,7 @@
         <!-- Left Content -->
         <div class="text-left">
           <p class="text-sm font-semibold text-black flex items-center gap-1">
-            <span class="text-yellow-500 text-lg">⭐</span> 2023 Top Quality
+            <span class="text-yellow-500 text-lg">⭐</span> 2025 Top Quality
             Award
           </p>
           <h1 class="text-4xl md:text-5xl font-bold leading-tight mt-3">
@@ -33,7 +37,7 @@
               <span class="text-orange-500 italic font-semibold">Season</span>
               <!-- <span class="absolute -top-4 left-0 text-sm italic text-black">new items</span> -->
             </span>
-            in Furnob style
+            in Vangoo style
           </h1>
           <p class="text-gray-600 text-lg mt-4">
             Ut lobortis, ex vitae lobortis cursus, elit nisi facilisis urna, at
@@ -61,138 +65,307 @@
 
     <!-- designers section start -->
     <div class="max-w-6xl mx-auto px-4 py-12">
-        <!-- Heading -->
-        <div class="text-center">
-            <h2 class="text-2xl md:text-3xl font-semibold">Top Designers With <span class="italic">'Furnob'</span></h2>
-            <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
-                Aliquam vel maximus nulla. Etiam viverra nulla ac tellus auctor tempus. Donec euismod commodo mi, ac auctor tortor aliquam in.
-            </p>
+      <!-- Heading -->
+      <div class="text-center">
+        <h2 class="text-2xl md:text-3xl font-semibold">
+          Top Designers With <span class="italic">'Vangoo'</span>
+        </h2>
+        <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+          Aliquam vel maximus nulla. Etiam viverra nulla ac tellus auctor
+          tempus. Donec euismod commodo mi, ac auctor tortor aliquam in.
+        </p>
+      </div>
+
+      <!-- Designers Grid -->
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Designer Card 1 -->
+        <div class="bg-white overflow-hidden">
+          <img
+            src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-03.jpg"
+            alt="Monique Greer"
+            class="w-full h-80 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-bold">Monique Greer</h3>
+            <p class="text-gray-600 text-sm">British Interior Designer</p>
+          </div>
         </div>
 
-        <!-- Designers Grid -->
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <!-- Designer Card 1 -->
-            <div class="bg-white overflow-hidden">
-                <img src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-03.jpg" alt="Monique Greer" class="w-full h-80 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-bold">Monique Greer</h3>
-                    <p class="text-gray-600 text-sm">British Interior Designer</p>
-                </div>
-            </div>
-
-            <!-- Designer Card 2 -->
-            <div class="bg-white overflow-hidden">
-                <img src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-01.jpg" alt="Britney Cooper" class="w-full h-80 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-bold">Britney Cooper</h3>
-                    <p class="text-gray-600 text-sm">Italian Interior Designer</p>
-                </div>
-            </div>
-
-            <!-- Designer Card 3 -->
-            <div class="bg-white overflow-hidden">
-                <img src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-02.jpg" alt="Raymond Atkins" class="w-full h-80 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-bold">Raymond Atkins</h3>
-                    <p class="text-gray-600 text-sm">French Product Designer</p>
-                </div>
-            </div>
+        <!-- Designer Card 2 -->
+        <div class="bg-white overflow-hidden">
+          <img
+            src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-01.jpg"
+            alt="Britney Cooper"
+            class="w-full h-80 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-bold">Britney Cooper</h3>
+            <p class="text-gray-600 text-sm">Italian Interior Designer</p>
+          </div>
         </div>
 
-        <!-- Customer Review Section -->
-        <div class="mt-12 text-center">
-            <h3 class="text-xl md:text-2xl font-semibold">What do our customers think about us?</h3>
-            <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
-                Aliquam vel maximus nulla. Etiam viverra nulla ac tellus auctor tempus. Donec euismod commodo mi, ac auctor tortor aliquam.
-            </p>
+        <!-- Designer Card 3 -->
+        <div class="bg-white overflow-hidden">
+          <img
+            src="https://klbtheme.com/furnob/wp-content/uploads/2021/12/designer-02.jpg"
+            alt="Raymond Atkins"
+            class="w-full h-80 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-bold">Raymond Atkins</h3>
+            <p class="text-gray-600 text-sm">French Product Designer</p>
+          </div>
         </div>
-    </div>
+      </div>
 
-
-    <!-- delevery are section -->
-    <div class="max-w-6xl mx-auto p-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-center">
-            <!-- Free Shipping -->
-            <div class="flex flex-col items-center  text-centermd:text-center">
-                <img src="https://img.icons8.com/ios/50/shop.png" alt="Free Shipping" class="w-12 h-12">
-                <h3 class="text-lg font-semibold mt-2">Free Shipping Orders $60+</h3>
-                <p class="text-gray-600 text-sm">A delivery service you can depend on</p>
-            </div>
-
-            <!-- Customer Support -->
-            <div class="flex flex-col items-center text-center md:text-center">
-                <img src="https://img.icons8.com/ios/50/phone.png" alt="Customer Support" class="w-12 h-12">
-                <h3 class="text-lg font-semibold mt-2">Customer Support</h3>
-                <p class="text-gray-600 text-sm">Satisfied customers are our best ads</p>
-            </div>
-
-            <!-- Secure Payments -->
-            <div class="flex flex-col items-center  text-center md:text-center">
-                <img src="https://img.icons8.com/ios/50/bank-card-back-side.png" alt="Secure Payments" class="w-12 h-12">
-                <h3 class="text-lg font-semibold mt-2">100% Secure Payments</h3>
-                <p class="text-gray-600 text-sm">The highest level of security</p>
-            </div>
-        </div>
+      <!-- Customer Review Section -->
+      <div class="mt-12 text-center">
+        <h3 class="text-xl md:text-2xl font-semibold">
+          What do our customers think about us?
+        </h3>
+        <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+          Aliquam vel maximus nulla. Etiam viverra nulla ac tellus auctor
+          tempus. Donec euismod commodo mi, ac auctor tortor aliquam.
+        </p>
+      </div>
     </div>
 
     <!-- images with content -->
-    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Left Section -->
+    <div
+      class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8"
+    >
+      <!-- Left Section -->
+      <div>
+        <p class="text-sm text-yellow-500 font-semibold">
+          Massey Collection 2025
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 leading-tight">
+          New Decoration For Your <br />
+          Living Spaces
+        </h2>
+        <p class="text-gray-600 mt-4">
+          Praesent faucibus, lorem et sollicitudin dapibus, quam ligula pretium
+          magna, eu congue ex quam at neque.
+        </p>
+
+        <!-- Countdown Timer -->
+        <p class="mt-6 text-gray-800 font-medium">
+          It’ll be worth the wait very soon !
+        </p>
+
+        <!-- Featured Image -->
+        <div class="mt-6">
+          <img
+            src="https://klbtheme.com/furnob/wp-content/uploads/2022/01/image-02.jpg"
+            alt="Yellow Chair"
+            class="w-[100%] h-[40%] rounded-lg shadow-md"
+          />
+          <p class="mt-4 font-semibold text-gray-800">
+            – Great Design For Home and Decoration.
+          </p>
+          <p class="text-gray-600 text-sm">
+            Praesent faucibus, lorem et sollicitudin dapibus, quam ligula
+            pretium magna, eu congue ex quam at neque.
+          </p>
+          <p class="text-yellow-600 font-semibold mt-2">Gligora Darby</p>
+        </div>
+      </div>
+
+      <!-- Right Section -->
+      <div class="grid grid-cols-1 gap-6">
+        <!-- Deluxe Collection -->
+        <div class="relative">
+          <img
+            src="https://klbtheme.com/furnob/wp-content/plugins/furnob-core/elementor/images/image-block.jpg"
+            alt="Sofa Collection"
+            class="rounded-lg shadow-md"
+          />
+          <div
+            class="absolute top-4 left-4 bg-white text-gray-700 px-3 py-1 text-sm rounded shadow-md"
+          >
+            Designed by <span class="font-semibold">Clint Dunham - France</span>
+          </div>
+          <h3 class="mt-3 text-lg font-semibold text-gray-900">
+            Deluxe Venezie Collection
+          </h3>
+          <a
+            href="#"
+            class="text-yellow-600 font-medium text-sm inline-block mt-1 hover:underline"
+          >
+            Shop Collection →
+          </a>
+        </div>
+
+        <!-- Le'Bologna Collection -->
         <div>
-            <p class="text-sm text-yellow-500 font-semibold">Massey Collection 2021</p>
-            <h2 class="text-3xl md:text-4xl font-bold mt-2 leading-tight">
-                New Decoration For Your <br> Living Spaces
-            </h2>
-            <p class="text-gray-600 mt-4">
-                Praesent faucibus, lorem et sollicitudin dapibus, quam ligula pretium magna, eu congue ex quam at neque.
-            </p>
-
-            <!-- Countdown Timer -->
-            <p class="mt-6 text-gray-800 font-medium">It’ll be worth the wait very soon !</p>
-
-            <!-- Featured Image -->
-            <div class="mt-6">
-                <img src="https://klbtheme.com/furnob/wp-content/uploads/2022/01/image-02.jpg" alt="Yellow Chair" class="w-[100%] h-[40%] rounded-lg shadow-md">
-                <p class="mt-4 font-semibold text-gray-800">– Great Design For Home and Decoration.</p>
-                <p class="text-gray-600 text-sm">
-                    Praesent faucibus, lorem et sollicitudin dapibus, quam ligula pretium magna, eu congue ex quam at neque.
-                </p>
-                <p class="text-yellow-600 font-semibold mt-2">Gligora Darby</p>
-            </div>
+          <img
+            src="https://klbtheme.com/furnob/wp-content/uploads/2022/01/image-04.jpg"
+            alt="Table Collection"
+            class="rounded-lg shadow-md"
+          />
+          <h3 class="mt-3 text-lg font-semibold text-gray-900">
+            Le’Bologna Collection
+          </h3>
+          <a
+            href="#"
+            class="text-yellow-600 font-medium text-sm inline-block mt-1 hover:underline"
+          >
+            Shop Collection →
+          </a>
         </div>
-
-        <!-- Right Section -->
-        <div class="grid grid-cols-1 gap-6">
-            <!-- Deluxe Collection -->
-            <div class="relative">
-                <img src="https://klbtheme.com/furnob/wp-content/plugins/furnob-core/elementor/images/image-block.jpg" alt="Sofa Collection" class="rounded-lg shadow-md">
-                <div class="absolute top-4 left-4 bg-white text-gray-700 px-3 py-1 text-sm rounded shadow-md">
-                    Designed by <span class="font-semibold">Clint Dunham - France</span>
-                </div>
-                <h3 class="mt-3 text-lg font-semibold text-gray-900">Deluxe Venezie Collection</h3>
-                <a href="#" class="text-yellow-600 font-medium text-sm inline-block mt-1 hover:underline">
-                    Shop Collection →
-                </a>
-            </div>
-
-            <!-- Le'Bologna Collection -->
-            <div>
-                <img src="https://klbtheme.com/furnob/wp-content/uploads/2022/01/image-04.jpg" alt="Table Collection" class="rounded-lg shadow-md">
-                <h3 class="mt-3 text-lg font-semibold text-gray-900">Le’Bologna Collection</h3>
-                <a href="#" class="text-yellow-600 font-medium text-sm inline-block mt-1 hover:underline">
-                    Shop Collection →
-                </a>
-            </div>
-        </div>
+      </div>
     </div>
 
+    <!-- Testimonials Section -->
+    <section class="py-8 px-6">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">Our Lucky Customers</h2>
+        <p class="text-gray-600">
+          Visit our shop to see amazing creations from our designers.
+        </p>
+      </div>
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <!-- Testimonial 1 -->
+          <div class="swiper-slide">
+            <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow">
+              <img
+                src="https://randomuser.me/api/portraits/women/1.jpg"
+                class="w-20 h-20 rounded-full mx-auto"
+              />
+              <h3 class="text-lg font-semibold mt-4">Allen Smith</h3>
+              <div class="text-yellow-500 text-lg">★★★★★</div>
+              <p class="text-gray-600 mt-2">Amazing product quality!</p>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="swiper-slide">
+            <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow">
+              <img
+                src="https://randomuser.me/api/portraits/men/2.jpg"
+                class="w-20 h-20 rounded-full mx-auto"
+              />
+              <h3 class="text-lg font-semibold mt-4">Teresa Holland</h3>
+              <div class="text-yellow-500 text-lg">★★★★★</div>
+              <p class="text-gray-600 mt-2">Fast delivery. Love it!</p>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="swiper-slide">
+            <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow">
+              <img
+                src="https://randomuser.me/api/portraits/men/3.jpg"
+                class="w-20 h-20 rounded-full mx-auto"
+              />
+              <h3 class="text-lg font-semibold mt-4">John Doe</h3>
+              <div class="text-yellow-500 text-lg">★★★★★</div>
+              <p class="text-gray-600 mt-2">Best purchase ever!</p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow">
+              <img
+                src="https://randomuser.me/api/portraits/men/3.jpg"
+                class="w-20 h-20 rounded-full mx-auto"
+              />
+              <h3 class="text-lg font-semibold mt-4">John Doe</h3>
+              <div class="text-yellow-500 text-lg">★★★★★</div>
+              <p class="text-gray-600 mt-2">Best purchase ever!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
+
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- delevery are section -->
+    <div class="max-w-full mx-auto p-6 bg-gray-200">
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-center"
+      >
+        <!-- Free Shipping -->
+        <div class="flex flex-col items-center text-centermd:text-center  md:border-r border-gray-600 ">
+          <img
+            src="https://img.icons8.com/ios/50/shop.png"
+            alt="Free Shipping"
+            class="w-12 h-12"
+          />
+          <h3 class="text-lg font-semibold mt-2">Free Shipping Orders $60+</h3>
+          <p class="text-gray-600 text-sm">
+            A delivery service you can depend on
+          </p>
+        </div>
+
+        <!-- Customer Support -->
+        <div class="flex flex-col items-center text-center md:text-center  md:border-r border-gray-600 ">
+          <img
+            src="https://img.icons8.com/ios/50/phone.png"
+            alt="Customer Support"
+            class="w-12 h-12"
+          />
+          <h3 class="text-lg font-semibold mt-2">Customer Support</h3>
+          <p class="text-gray-600 text-sm">
+            Satisfied customers are our best ads
+          </p>
+        </div>
+
+        <!-- Secure Payments -->
+        <div class="flex flex-col items-center text-center md:text-center">
+          <img
+            src="https://img.icons8.com/ios/50/bank-card-back-side.png"
+            alt="Secure Payments"
+            class="w-12 h-12"
+          />
+          <h3 class="text-lg font-semibold mt-2">100% Secure Payments</h3>
+          <p class="text-gray-600 text-sm">The highest level of security</p>
+        </div>
+      </div>
+    </div>
 
     <!-- <h1>Product List</h1>
     <a href="add-product.html">Add New Product</a>
     <div id="product-list"></div> -->
     <!-- Footer section start -->
     <special-footer></special-footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
+      var swiper = new Swiper(".swiper-container", {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        },
+      });
+    </script>
+
+    <!-- <script>
       async function fetchProducts() {
         const response = await fetch("http://localhost:5000/products");
         const products = await response.json();
@@ -212,6 +385,6 @@
       }
 
       fetchProducts();
-    </script>
+    </script> -->
   </body>
 </html>

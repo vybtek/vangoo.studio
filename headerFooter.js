@@ -2,7 +2,7 @@ class SpecialHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
      <header>
-  <nav class="bg-white text-gray-800">
+  <nav class="top-0 left-0 bg-white text-gray-800">
     <div class="container mx-auto flex justify-between items-center py-2 px-6">
       <a href="index.html" class="flex items-center">
         <img src="./images/logo.png" alt="Logo" class="w-20 h-18" />
@@ -37,8 +37,8 @@ class SpecialHeader extends HTMLElement {
         <ul id="nav-menu" class="hidden md:flex space-x-8">
         <li><a href="services.html" class="nav-link hover:opacity-80">Services</a></li>
          <li><a href="products.html" class="nav-link hover:opacity-80">Products</a></li>
-        <li><a href="blog" class="nav-link hover:opacity-80">Projects</a></li>
-        <li><a href="contact" class="nav-link hover:opacity-80">Contact</a></li>
+        <li><a href="projects.html" class="nav-link hover:opacity-80">Projects</a></li>
+        <li><a href="contact.html" class="nav-link hover:opacity-80">Contact</a></li>
       </ul>
 
       <!-- Mobile Menu Button -->
@@ -65,8 +65,8 @@ class SpecialHeader extends HTMLElement {
         </div>
       </div>
 
-      <a href="blog" class="nav-link block hover:bg-gray-200 text-black py-2">Blog</a>
-      <a href="contact" class="nav-link block hover:bg-gray-200 text-black py-2">Contact</a>
+      <a href="projects.html" class="nav-link block hover:bg-gray-200 text-black py-2">Projects</a>
+      <a href="contact.html" class="nav-link block hover:bg-gray-200 text-black py-2">Contact</a>
     </div>
   </nav>
 </header>
@@ -179,10 +179,10 @@ class SpecialFooter extends HTMLElement {
             <a href="index" class="footer-link">Home</a>
             <a href="services" class="footer-link">Services</a>
             <a href="contact" class="footer-link">Contact Us</a>
-            <a href="contact" class="footer-link">Projects</a>
+            <a href="projects" class="footer-link">Projects</a>
           </div>
         </div>
-      </footer>`
+      </footer>`;
 
     this.activateCurrentFooterLink();
   }

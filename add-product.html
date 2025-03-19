@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Product</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Add New Product</h1>
     <form id="product-form">
-        <input type="text" id="name" placeholder="Product Name" required>
-        <input type="text" id="price" placeholder="Price" required>
-        <input type="text" id="image" placeholder="Image URL" required>
-        <textarea id="description" placeholder="Description" required></textarea>
-        <button type="submit">Add Product</button>
+      <input type="text" id="name" placeholder="Product Name" required />
+      <input type="text" id="price" placeholder="Price" required />
+      <input type="text" id="image" placeholder="Image URL" required />
+      <textarea id="description" placeholder="Description" required></textarea>
+      <button type="submit">Add Product</button>
     </form>
 
     <script>
-        document.getElementById("product-form").addEventListener("submit", async function (event) {
-            event.preventDefault();
+      document
+        .getElementById("product-form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-            const product = {
-                name: document.getElementById("name").value,
-                price: document.getElementById("price").value,
-                image: document.getElementById("image").value,
-                description: document.getElementById("description").value
-            };
+          const product = {
+            name: document.getElementById("name").value,
+            price: document.getElementById("price").value,
+            image: document.getElementById("image").value,
+            description: document.getElementById("description").value,
+          };
 
-            const response = await fetch("http://localhost:5000/add-product", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(product)
-            });
+          const response = await fetch("http://localhost:5000/add-product", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(product),
+          });
 
-            const result = await response.json();
-            alert(result.message);
-            window.location.href = "index.html"; // Redirect to product list
+          const result = await response.json();
+          alert(result.message);
+          window.location.href = "index.html"; // Redirect to product list
         });
     </script>
-</body>
+  </body>
 </html>
