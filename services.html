@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+    <script src="headerFooter.js"></script>
+    <link href="style.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+  </head>
+  <body class="bg-white">
+    <!-- Header -->
+    <special-header></special-header>
+
+    <!-- Services Section -->
+    <section class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <!-- Left Side -->
+        <div>
+          <h2 class="text-gray-900 font-bold text-2xl md:text-3xl">
+            Our Services
+          </h2>
+          <p class="text-gray-800 text-lg font-semibold mt-2">
+            DESIGN | DEMONSTRATE | DELIVER
+          </p>
+        </div>
+
+        <!-- Right Side -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="bg-white p-6 rounded-lg text-center shadow">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/259/259481.png"
+              class="mx-auto w-12"
+            />
+            <p class="mt-3 font-medium text-gray-800">PRODUCT ENGINEERING</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg text-center shadow">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png"
+              class="mx-auto w-12"
+            />
+            <p class="mt-3 font-medium text-gray-800">PROTOTYPING</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg text-center shadow">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/484/484167.png"
+              class="mx-auto w-12"
+            />
+            <p class="mt-3 font-medium text-gray-800">VALUE ENGINEERING</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg text-center shadow">
+            <i class="fa-solid fa-truck text-4xl"></i>
+            <p class="mt-3 font-medium text-gray-800">ON SITE DELIVERY</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg text-center shadow">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/1086/1086479.png"
+              class="mx-auto w-12"
+            />
+            <p class="mt-3 font-medium text-gray-800">INSTALLATION</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg text-center shadow">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/644/644124.png"
+              class="mx-auto w-12"
+            />
+            <p class="mt-3 font-medium text-gray-800">RESPONSIBILITY</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-12 px-6">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">Our Lucky Customers</h2>
+        <p class="text-gray-600">
+          Visit our shop to see amazing creations from our designers.
+        </p>
+      </div>
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <!-- Testimonial 1 -->
+          <div class="swiper-slide">
+            <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow">
+              <img
+                src="https://randomuser.me/api/portraits/women/1.jpg"
+                class="w-20 h-20 rounded-full mx-auto"
+              />
+              <h3 class="text-lg font-semibold mt-4">Allen Smith</h3>
+              <div class="text-yellow-500 text-lg">★★★★★</div>
+              <p class="text-gray-600 mt-2">Amazing product quality!</p>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="swiper-slide">
+            <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow">
+              <img
+                src="https://randomuser.me/api/portraits/men/2.jpg"
+                class="w-20 h-20 rounded-full mx-auto"
+              />
+              <h3 class="text-lg font-semibold mt-4">Teresa Holland</h3>
+              <div class="text-yellow-500 text-lg">★★★★★</div>
+              <p class="text-gray-600 mt-2">Fast delivery. Love it!</p>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="swiper-slide">
+            <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow">
+              <img
+                src="https://randomuser.me/api/portraits/men/3.jpg"
+                class="w-20 h-20 rounded-full mx-auto"
+              />
+              <h3 class="text-lg font-semibold mt-4">John Doe</h3>
+              <div class="text-yellow-500 text-lg">★★★★★</div>
+              <p class="text-gray-600 mt-2">Best purchase ever!</p>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow">
+              <img
+                src="https://randomuser.me/api/portraits/men/3.jpg"
+                class="w-20 h-20 rounded-full mx-auto"
+              />
+              <h3 class="text-lg font-semibold mt-4">John Doe</h3>
+              <div class="text-yellow-500 text-lg">★★★★★</div>
+              <p class="text-gray-600 mt-2">Best purchase ever!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
+
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <special-footer></special-footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper(".swiper-container", {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        },
+      });
+    </script>
+  </body>
+</html>
