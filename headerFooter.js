@@ -38,6 +38,7 @@ class SpecialHeader extends HTMLElement {
         <li><a href="services.html" class="nav-link hover:opacity-80">Services</a></li>
          <li><a href="products.html" class="nav-link hover:opacity-80">Products</a></li>
         <li><a href="projects.html" class="nav-link hover:opacity-80">Projects</a></li>
+        <li><a href="blog.html" class="nav-link hover:opacity-80">Blog</a></li>
         <li><a href="contact.html" class="nav-link hover:opacity-80">Contact</a></li>
       </ul>
 
