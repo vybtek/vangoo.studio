@@ -158,13 +158,13 @@ class SpecialFooter extends HTMLElement {
         <li>
             <a href="tel:+919116560069" class="flex items-center space-x-2">
                 <i class="fas fa-phone text-blue-500"></i>
-                <span>+91 0000000000</span>
+                <span>+91 8302510361</span>
             </a>
         </li>
         <li>
             <a href="mailto:vybtek@gmail.com" class="flex items-center space-x-2">
                 <i class="fas fa-envelope text-blue-500"></i>
-                <span>vangoo@gmail.com</span>
+                <span>suppot@vangoo.com</span>
             </a>
         </li>
          <li><i class="fas fa-clock text-blue-500"></i> Opening Hours: 10:00 - 18:00</li>
@@ -183,7 +183,26 @@ class SpecialFooter extends HTMLElement {
             <a href="projects" class="footer-link">Projects</a>
           </div>
         </div>
-      </footer>`;
+      </footer>
+   <!-- Promotion Stripe -->
+<div class="w-full bg-gradient-to-b from-blue-100 to-white text-gray-600 py-2 text-center flex items-center justify-center">
+    <div class="container flex items-center justify-center">   
+        <!-- Marquee Scrolling Text -->
+        <div class="flex items-center justify-center gap-2">
+            <a href="https://vybtek.com/" target="_blank" class="flex items-center gap-2">
+                <img src="https://vybtek.com/images/logo.png" alt="Company Logo" class="h-14">
+                <span class="text-sm md:text-lg font-semibold">
+                    VybTek IT Solutions
+                </span>
+            </a>
+            <span class="text-sm md:text-lg font-semibold">
+                | 🚀 Our company provides the best web solutions! | 🌍 Contact us at vybtek.com
+            </span>
+        </div>
+    </div>
+</div>
+
+      `;
 
     this.activateCurrentFooterLink();
   }
