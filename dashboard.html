@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-1/4 bg-gray-800 text-white p-5">
+            <h2 class="text-2xl font-bold mb-5 cursor-pointer" onclick="window.location.href='dashboard.html'">Dashboard</h2>
+            <ul>
+                <li class="mb-3"><a href="add-product.html" class="block p-2 bg-gray-700 rounded">Add Product</a></li>
+                <li><a href="add-project.html" class="block p-2 bg-gray-700 rounded">Add Project</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <h1 class="text-3xl font-bold mb-6">Welcome to the CRM Dashboard</h1>
+            
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-3 gap-6 mb-6">
+                <div class="bg-white p-6 rounded shadow">
+                    <h2 class="text-xl font-bold">Total Sales</h2>
+                    <p class="text-2xl mt-2">$15,230</p>
+                </div>
+                <div class="bg-white p-6 rounded shadow">
+                    <h2 class="text-xl font-bold">Active Projects</h2>
+                    <p class="text-2xl mt-2">8</p>
+                </div>
+                <div class="bg-white p-6 rounded shadow">
+                    <h2 class="text-xl font-bold">New Clients</h2>
+                    <p class="text-2xl mt-2">23</p>
+                </div>
+            </div>
+            
+            <!-- Recent Activities -->
+            <div class="bg-white p-6 rounded shadow">
+                <h2 class="text-2xl font-bold mb-4">Recent Activities</h2>
+                <ul>
+                    <li class="mb-2">✅ New product added: <strong>CRM Software</strong></li>
+                    <li class="mb-2">📌 Project <strong>Website Redesign</strong> updated</li>
+                    <li class="mb-2">💼 New client <strong>John Doe</strong> registered</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

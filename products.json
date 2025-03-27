@@ -1,44 +1,65 @@
 [
   {
-    "id": 1,
-    "name": "Product 1",
-    "price": "$10",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "This is a description of Product 1."
+    "id": "0447d71a-3813-425a-addc-5889f69d768a",
+    "name": "Elegant Wooden Chair",
+    "price": "$120",
+    "image": "https://ievo.in/wp-content/uploads/2020/07/furniture.png",
+    "description": "A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors."
   },
   {
-    "name": "arpit",
-    "price": "45",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "wewe",
-    "id": 2
+    "id": "0447d71a-3813-425a-addc-5889f99d764a",
+    "name": "Luxury Oak Dining Table",
+    "price": "$450",
+    "image": "https://ievo.in/wp-content/uploads/2020/07/millwork.png",
+    "description": "A high-quality oak dining table with a polished finish, ideal for family gatherings and dinner parties."
   },
   {
-    "name": "gh",
-    "price": "565",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "hyh",
-    "id": 3
+    "id": "0447d71a-3813-425a-addc-5889f69d764a",
+    "name": "Modern Marble Coffee Table",
+    "price": "$565",
+    "image": "https://ievo.in/wp-content/uploads/2020/07/metal-and-stone.png",
+    "description": "A premium marble coffee table with a stylish metal frame, adding elegance to any living space."
   },
   {
-    "name": "fgf",
-    "price": "33",
-    "image": "dfdgdfg",
-    "description": "rr",
-    "id": 4
+    "id": "0447d71a-3813-425a-addc-5889f69e764a",
+    "name": "Outdoor Lounge Set",
+    "price": "$330",
+    "image": "https://ievo.in/wp-content/uploads/2020/07/outdoor.png",
+    "description": "A comfortable and durable outdoor lounge set, perfect for relaxing in your garden or patio."
   },
   {
-    "name": "arpit",
-    "price": "45",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "hh",
-    "id": 5
+    "id": "0447d71a-3813-425a-addc-5889f69d744a",
+    "name": "Decorative Wooden Wall Shelf",
+    "price": "$45",
+    "image": "https://ievo.in/wp-content/uploads/2020/07/decor-luminaries.jpg",
+    "description": "A minimalist wooden wall shelf designed to hold books, decor pieces, or small plants."
   },
   {
-    "name": "arpit",
-    "price": "66",
+    "id": "0447d71a-3813-425a-addc-5889f69d754a",
+    "name": "Ergonomic Office Chair",
+    "price": "$199",
+    "image": "https://ievo.in/wp-content/uploads/2020/07/ose-manufacturing-procurement.jpg",
+    "description": "A high-back ergonomic office chair with lumbar support for maximum comfort during long working hours."
+  },
+  {
+    "id": "0447d71a-3813-425a-addc-5889f69d764b",
+    "name": "Luxury Leather Sofa",
+    "price": "$950",
     "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "45646",
-    "id": 6
+    "description": "A stylish and comfortable luxury leather sofa that adds sophistication to your living room."
+  },
+  {
+    "id": "9b3c4cdb-881e-48be-bbaf-939076bfe8ec",
+    "name": "Beds",
+    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
+    "description": "testing",
+    "price": "45"
+  },
+  {
+    "id": "ed75e8a4-d890-4004-919b-7ce8a2888291",
+    "name": "hello",
+    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
+    "description": "hye",
+    "price": "565"
   }
 ]

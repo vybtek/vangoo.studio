@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products</title>
-    <link href="style.css" rel="stylesheet" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js"></script>
-    <script src="headerFooter.js"></script>
-  </head>
-  <body>
-    <!-- Header area section start -->
-    <special-header></special-header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products</title>
+  <link href="style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script.js"></script>
+  <script src="headerFooter.js"></script>
+  <script src="products.js"></script>
 
+</head>
+
+<body>
+  <!-- Header -->
+  <special-header></special-header>
+
+  
      <!-- banner section -->
      <section
      class="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center bg-cover bg-center"
@@ -41,122 +42,16 @@
      </div>
    </section>
 
-    <!-- products section -->
-    <section class="max-w-6xl mx-auto px-6 py-12">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Category Item -->
-        <div class="text-center">
-          <h3 class="text-lg font-semibold text-gray-800">Furniture</h3>
-          <a href="#" class="text-red-500 text-sm font-medium">Discover More</a>
-          <img
-            src="https://ievo.in/wp-content/uploads/2020/07/furniture.png"
-            alt="Furniture"
-            class="mt-3 rounded-lg shadow-md"
-          />
-        </div>
+  <!-- Product categories section -->
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- Products will be dynamically added here -->
+    </div>
+  </section>
 
-        <div class="text-center">
-          <h3 class="text-lg font-semibold text-gray-800">Millwork</h3>
-          <a href="#" class="text-red-500 text-sm font-medium">Discover More</a>
-          <img
-            src="https://ievo.in/wp-content/uploads/2020/07/millwork.png"
-            alt="Millwork"
-            class="mt-3 rounded-lg shadow-md"
-          />
-        </div>
 
-        <div class="text-center">
-          <h3 class="text-lg font-semibold text-gray-800">
-            Metal & Stone Work
-          </h3>
-          <a href="#" class="text-red-500 text-sm font-medium">Discover More</a>
-          <img
-            src="https://ievo.in/wp-content/uploads/2020/07/metal-and-stone.png"
-            alt="Metal & Stone Work"
-            class="mt-3 rounded-lg shadow-md"
-          />
-        </div>
+  <!-- Footer -->
+  <special-footer></special-footer>
+</body>
 
-        <div class="text-center">
-          <h3 class="text-lg font-semibold text-gray-800">Outdoor</h3>
-          <a href="#" class="text-red-500 text-sm font-medium">Discover More</a>
-          <img
-            src="https://ievo.in/wp-content/uploads/2020/07/outdoor.png"
-            alt="Outdoor"
-            class="mt-3 rounded-lg shadow-md"
-          />
-        </div>
-
-        <div class="text-center">
-          <h3 class="text-lg font-semibold text-gray-800">
-            Decor & Luminaries
-          </h3>
-          <a href="#" class="text-red-500 text-sm font-medium">Discover More</a>
-          <img
-            src="https://ievo.in/wp-content/uploads/2020/07/decor-luminaries.jpg"
-            alt="Decor & Luminaries"
-            class="mt-3 rounded-lg shadow-md"
-          />
-        </div>
-
-        <div class="text-center">
-          <h3 class="text-lg font-semibold text-gray-800">
-            OS&E Manufacturing & Procurement
-          </h3>
-          <a href="#" class="text-red-500 text-sm font-medium">Discover More</a>
-          <img
-            src="https://ievo.in/wp-content/uploads/2020/07/ose-manufacturing-procurement.jpg"
-            alt="OS&E Manufacturing & Procurement"
-            class="mt-3 rounded-lg shadow-md"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- delevery are section -->
-    <div class="max-w-full mx-auto p-6 bg-gray-200 mt-6">
-        <div
-          class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-center"
-        >
-          <!-- Free Shipping -->
-          <div class="flex flex-col items-center text-centermd:text-center  md:border-r border-gray-600 ">
-            <img
-              src="https://img.icons8.com/ios/50/shop.png"
-              alt="Free Shipping"
-              class="w-12 h-12"
-            />
-            <h3 class="text-lg font-semibold mt-2">Free Shipping Orders $60+</h3>
-            <p class="text-gray-600 text-sm">
-              A delivery service you can depend on
-            </p>
-          </div>
-  
-          <!-- Customer Support -->
-          <div class="flex flex-col items-center text-center md:text-center  md:border-r border-gray-600 ">
-            <img
-              src="https://img.icons8.com/ios/50/phone.png"
-              alt="Customer Support"
-              class="w-12 h-12"
-            />
-            <h3 class="text-lg font-semibold mt-2">Customer Support</h3>
-            <p class="text-gray-600 text-sm">
-              Satisfied customers are our best ads
-            </p>
-          </div>
-  
-          <!-- Secure Payments -->
-          <div class="flex flex-col items-center text-center md:text-center">
-            <img
-              src="https://img.icons8.com/ios/50/bank-card-back-side.png"
-              alt="Secure Payments"
-              class="w-12 h-12"
-            />
-            <h3 class="text-lg font-semibold mt-2">100% Secure Payments</h3>
-            <p class="text-gray-600 text-sm">The highest level of security</p>
-          </div>
-        </div>
-      </div>
-
-    <special-footer></special-footer>
-  </body>
 </html>

@@ -192,12 +192,9 @@ class SpecialFooter extends HTMLElement {
             <a href="https://vybtek.com/" target="_blank" class="flex items-center gap-2">
                 <img src="https://vybtek.com/images/logo.png" alt="Company Logo" class="h-14">
                 <span class="text-sm md:text-lg font-semibold">
-                    VybTek IT Solutions
+                  Created with love by VybTek IT Solutions
                 </span>
             </a>
-            <span class="text-sm md:text-lg font-semibold">
-                | 🚀 Our company provides the best web solutions! | 🌍 Contact us at vybtek.com
-            </span>
         </div>
     </div>
 </div>
