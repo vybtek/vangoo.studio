@@ -2,76 +2,36 @@ class SpecialHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
      <header>
-  <nav class="top-0 left-0 bg-white text-gray-800">
-    <div class="container mx-auto flex justify-between items-center py-2 px-6">
-      <a href="index.html" class="flex items-center">
-        <img src="./images/logo.png" alt="Logo" class="w-20 h-18" />
-        <span class="text-xl font-bold text-gray-800">Vangoo.Studio</span>
-      </a>
+      <nav class="top-0 left-0 bg-white text-gray-800">
+        <div class="container mx-auto flex justify-between items-center py-2 px-6">
+          <a href="index.html" class="flex items-center">
+            <img src="./images/logo.png" alt="Logo" class="w-20 h-18" />
+            <span class="text-xl font-bold text-gray-800">Vangoo.Studio</span>
+          </a>
 
-      <!-- Desktop Menu -->
-      
-       <!-- <li class="nav-link relative group">
-          <button class="nav-link hover:opacity-80">Services ▾</button>
-          <div class="absolute left-0 p-1 w-48 bg-white shadow-lg rounded-lg hidden group-hover:block z-50">
-            <a href="software" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Service 1</a>
-            <a href="design" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Service 2</a>
-            <a href="marketing" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Service 3</a>
-            <a href="techsupport" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Service 4</a>
-            <a href="outsourcing" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Service 5</a>
-            <a href="consultation" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Service 6</a>
-          </div>
-        </li> -->
+          <ul id="nav-menu" class="hidden md:flex space-x-8">
+            <li><a href="services.html" class="nav-link hover:opacity-80">Services</a></li>
+            <li><a href="products.html" class="nav-link hover:opacity-80">Products</a></li>
+            <li><a href="projects.html" class="nav-link hover:opacity-80">Projects</a></li>
+            <li><a href="blog.html" class="nav-link hover:opacity-80">Blog</a></li>
+            <li><a href="contact.html" class="nav-link hover:opacity-80">Contact</a></li>
+          </ul>
 
-       <!-- <li class="nav-link relative group">
-          <button class="nav-link hover:opacity-80">Products ▾</button>
-          <div class="absolute left-0 p-1 w-48 bg-white shadow-lg rounded-lg hidden group-hover:block z-50">
-            <a href="software" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Products 1</a>
-            <a href="design" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Products 2</a>
-            <a href="marketing" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Products 3</a>
-            <a href="techsupport" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Products 4</a>
-            <a href="outsourcing" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Products 5</a>
-            <a href="consultation" class="nav-link dropdown-item block px-4 py-2 text-gray-800 hover:bg-gray-200">Products 6</a>
-          </div>
-        </li> -->
-        <ul id="nav-menu" class="hidden md:flex space-x-8">
-        <li><a href="services.html" class="nav-link hover:opacity-80">Services</a></li>
-         <li><a href="products.html" class="nav-link hover:opacity-80">Products</a></li>
-        <li><a href="projects.html" class="nav-link hover:opacity-80">Projects</a></li>
-        <li><a href="blog.html" class="nav-link hover:opacity-80">Blog</a></li>
-        <li><a href="contact.html" class="nav-link hover:opacity-80">Contact</a></li>
-      </ul>
-
-      <!-- Mobile Menu Button -->
-      <button id="menu-toggle" class="md:hidden text-gray-700 text-2xl">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 space-y-3">
-      <a href="about" class="nav-link block hover:bg-gray-200 text-black py-2">About</a>
-
-      <div class="relative group">
-        <button class="w-full hover:bg-gray-200 text-left flex justify-between items-center text-black py-2">
-          Services <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="hidden group-hover:block bg-gray-100 p-2 space-y-2">
-          <a href="software" class="nav-link block hover:bg-gray-200 text-black">Service 1</a>
-          <a href="design" class="nav-link block hover:bg-gray-200 text-black">Service 2</a>
-          <a href="marketing" class="nav-link block hover:bg-gray-200 text-black">Service 3</a>
-          <a href="techsupport" class="nav-link block hover:bg-gray-200 text-black">Service 4</a>
-          <a href="outsourcing" class="nav-link block hover:bg-gray-200 text-black">Service 5</a>
-          <a href="consultation" class="nav-link block hover:bg-gray-200 text-black">Service 6</a>
+          <!-- Mobile Menu Button -->
+          <button id="menu-toggle" class="md:hidden text-gray-700 text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
-      </div>
 
-      <a href="projects.html" class="nav-link block hover:bg-gray-200 text-black py-2">Projects</a>
-      <a href="contact.html" class="nav-link block hover:bg-gray-200 text-black py-2">Contact</a>
-    </div>
-  </nav>
-</header>
-`;
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 space-y-3">
+          <a href="about" class="nav-link block hover:bg-gray-200 text-black py-2">About</a>
+          <a href="projects.html" class="nav-link block hover:bg-gray-200 text-black py-2">Projects</a>
+          <a href="contact.html" class="nav-link block hover:bg-gray-200 text-black py-2">Contact</a>
+        </div>
+      </nav>
+    </header>
+    `;
 
     this.activateCurrentNavLink();
     this.setupMobileMenu();
@@ -79,7 +39,7 @@ class SpecialHeader extends HTMLElement {
 
   activateCurrentNavLink() {
     const navLinks = document.querySelectorAll(
-      "#mobile-menu .nav-link, .nav-link"
+      "#nav-menu .nav-link, #mobile-menu .nav-link"
     );
     const currentPath =
       window.location.pathname.split("/").pop() || "index.html"; // Default to index.html if empty
@@ -92,12 +52,6 @@ class SpecialHeader extends HTMLElement {
       if (linkPath === currentPath) {
         link.classList.add("active-link");
         link.classList.remove("inactive-link");
-
-        // If the link is inside a dropdown, mark its parent button as active
-        const parentDiv = link.closest(".group");
-        if (parentDiv) {
-          parentDiv.querySelector("button").classList.add("active-link");
-        }
       } else {
         link.classList.add("inactive-link");
         link.classList.remove("active-link");
@@ -111,6 +65,7 @@ class SpecialHeader extends HTMLElement {
     });
   }
 }
+
 
 class SpecialFooter extends HTMLElement {
   connectedCallback() {
@@ -136,13 +91,13 @@ class SpecialFooter extends HTMLElement {
           <!-- IT Services Section -->
           <div>
             <h3 class="text-lg font-semibold">Products</h3>
-            <ul class="mt-2 space-y-2 text-gray-600">
+           <!--  <ul class="mt-2 space-y-2 text-gray-600">
               <li><a href="design" class="footer-link">Products 1</a></li>
               <li><a href="marketing" class="footer-link">Products 2</a></li>
               <li><a href="techsupport" class="footer-link">Products 3</a></li>
               <li><a href="outsourcing" class="footer-link">Products 4</a></li>
               <li><a href="consultation" class="footer-link">Products 5</a></li>
-            </ul>
+            </ul> -->
           </div>
 
           <!-- Contact Info Section -->

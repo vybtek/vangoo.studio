@@ -26,3 +26,13 @@ body, html {
     transform: scale(1.2);
   }
   
+
+  /* Example active and inactive link styles */
+.active-link {
+  font-weight: bold;
+  color: #1d4ed8; /* Tailwind blue-600 */
+}
+
+.inactive-link {
+  color: #4b5563; /* Tailwind gray-600 */
+}

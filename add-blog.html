@@ -8,50 +8,96 @@
   </head>
   <body class="bg-gray-100 flex flex-col items-center py-10">
     <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
-      <h1 class="text-2xl font-bold text-center text-gray-700 mb-4">Add New Blog</h1>
+      <h1 class="text-2xl font-bold text-center text-gray-700 mb-4">
+        Add New Blog
+      </h1>
       <form id="blog-form" class="space-y-4">
-        <input type="text" id="title" placeholder="Blog Title" required class="w-full p-2 border rounded-lg" />
-        <input type="text" id="author" placeholder="Author Name" required class="w-full p-2 border rounded-lg" />
-        <input type="text" id="image" placeholder="Blog Image URL" required class="w-full p-2 border rounded-lg" />
-        <textarea id="content" placeholder="Blog Content" required class="w-full p-2 border rounded-lg"></textarea>
-        <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Add Blog</button>
+        <input
+          type="text"
+          id="title"
+          placeholder="Blog Title"
+          required
+          class="w-full p-2 border rounded-lg"
+        />
+        <input
+          type="text"
+          id="author"
+          placeholder="Author Name"
+          required
+          class="w-full p-2 border rounded-lg"
+        />
+        <input
+          type="text"
+          id="image"
+          placeholder="Blog Image URL"
+          required
+          class="w-full p-2 border rounded-lg"
+        />
+        <textarea
+          id="content"
+          placeholder="Blog Content"
+          required
+          class="w-full p-2 border rounded-lg"
+        ></textarea>
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+        >
+          Add Blog
+        </button>
       </form>
     </div>
 
-    <div id="blog-details" class="hidden bg-white shadow-lg rounded-lg p-6 w-full max-w-md mt-6">
+    <div
+      id="blog-details"
+      class="hidden bg-white shadow-lg rounded-lg p-6 w-full max-w-md mt-6"
+    >
       <h2 class="text-xl font-semibold text-gray-700">Blog Details</h2>
-      <img id="blog-image" src="" alt="Blog Image" class="w-full h-40 object-cover mt-4 rounded-lg" />
-      <p class="text-gray-700 mt-2"><strong>Title:</strong> <span id="blog-title"></span></p>
-      <p class="text-gray-700"><strong>Author:</strong> <span id="blog-author"></span></p>
-      <p class="text-gray-700"><strong>Content:</strong> <span id="blog-content"></span></p>
+      <img
+        id="blog-image"
+        src=""
+        alt="Blog Image"
+        class="w-full h-40 object-cover mt-4 rounded-lg"
+      />
+      <p class="text-gray-700 mt-2">
+        <strong>Title:</strong> <span id="blog-title"></span>
+      </p>
+      <p class="text-gray-700">
+        <strong>Author:</strong> <span id="blog-author"></span>
+      </p>
+      <p class="text-gray-700">
+        <strong>Content:</strong> <span id="blog-content"></span>
+      </p>
     </div>
 
     <script>
-      document.getElementById("blog-form").addEventListener("submit", async function (event) {
-        event.preventDefault();
+      document
+        .getElementById("blog-form")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-        const blog = {
-          title: document.getElementById("title").value,
-          author: document.getElementById("author").value,
-          image: document.getElementById("image").value,
-          content: document.getElementById("content").value,
-        };
+          const blog = {
+            title: document.getElementById("title").value,
+            author: document.getElementById("author").value,
+            image: document.getElementById("image").value,
+            content: document.getElementById("content").value,
+          };
 
-        const response = await fetch("http://localhost:5000/add-blog", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(blog),
+          const response = await fetch("http://localhost:5000/add-blog", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(blog),
+          });
+
+          const result = await response.json();
+          alert(result.message);
+
+          document.getElementById("blog-details").classList.remove("hidden");
+          document.getElementById("blog-title").textContent = blog.title;
+          document.getElementById("blog-author").textContent = blog.author;
+          document.getElementById("blog-content").textContent = blog.content;
+          document.getElementById("blog-image").src = blog.image;
         });
-
-        const result = await response.json();
-        alert(result.message);
-        
-        document.getElementById("blog-details").classList.remove("hidden");
-        document.getElementById("blog-title").textContent = blog.title;
-        document.getElementById("blog-author").textContent = blog.author;
-        document.getElementById("blog-content").textContent = blog.content;
-        document.getElementById("blog-image").src = blog.image;
-      });
     </script>
   </body>
 </html>

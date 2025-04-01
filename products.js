@@ -1,5 +1,3 @@
-
-
 // Function to fetch and display all products
 async function fetchProducts() {
   const productGrid = document.getElementById("product-grid");
@@ -28,7 +26,7 @@ async function fetchProducts() {
         </div>
       </div>
     `;
-    
+
       productGrid.appendChild(productCard);
     });
   } catch (error) {
@@ -45,7 +43,8 @@ async function fetchProductDetail() {
   const productId = params.get("id");
 
   if (!productId) {
-    productDetail.innerHTML = "<p class='text-red-500 text-lg'>Product not found.</p>";
+    productDetail.innerHTML =
+      "<p class='text-red-500 text-lg'>Product not found.</p>";
     return;
   }
 
@@ -73,9 +72,9 @@ async function fetchProductDetail() {
       </div>
     </div>
   `;
-  
   } catch (error) {
-    productDetail.innerHTML = "<p class='text-red-500 text-lg'>Error loading product details.</p>";
+    productDetail.innerHTML =
+      "<p class='text-red-500 text-lg'>Error loading product details.</p>";
   }
 }
 
