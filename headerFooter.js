@@ -1,9 +1,9 @@
 class SpecialHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-     <header>
-      <nav class="top-0 left-0 bg-white text-gray-800">
-        <div class="container mx-auto flex justify-between items-center py-2 px-6">
+     <header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+      <nav class="border-b border-gray-300">
+        <div class="container mx-auto flex justify-between items-center  px-6">
           <a href="index.html" class="flex items-center">
             <img src="./images/logo.png" alt="Logo" class="w-20 h-18" />
             <span class="text-xl font-bold text-gray-800">Vangoo.Studio</span>
@@ -25,7 +25,7 @@ class SpecialHeader extends HTMLElement {
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden flex-col bg-white shadow-lg p-4 space-y-3">
-          <a href="about" class="nav-link block hover:bg-gray-200 text-black py-2">About</a>
+          <a href="about.html" class="nav-link block hover:bg-gray-200 text-black py-2">About</a>
           <a href="projects.html" class="nav-link block hover:bg-gray-200 text-black py-2">Projects</a>
           <a href="contact.html" class="nav-link block hover:bg-gray-200 text-black py-2">Contact</a>
         </div>
@@ -33,28 +33,22 @@ class SpecialHeader extends HTMLElement {
     </header>
     `;
 
+    document.body.classList.add("pt-16"); // Adjust body padding to prevent content overlap
     this.activateCurrentNavLink();
     this.setupMobileMenu();
   }
 
   activateCurrentNavLink() {
-    const navLinks = document.querySelectorAll(
-      "#nav-menu .nav-link, #mobile-menu .nav-link"
-    );
-    const currentPath =
-      window.location.pathname.split("/").pop() || "index.html"; // Default to index.html if empty
+    const navLinks = this.querySelectorAll("#nav-menu .nav-link, #mobile-menu .nav-link");
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
     navLinks.forEach((link) => {
-      const linkPath = link.getAttribute("href")
-        ? link.getAttribute("href").split("/").pop()
-        : null;
+      const linkPath = link.getAttribute("href") ? link.getAttribute("href").split("/").pop() : null;
 
       if (linkPath === currentPath) {
-        link.classList.add("active-link");
-        link.classList.remove("inactive-link");
+        link.classList.add("text-blue-600", "font-semibold");
       } else {
-        link.classList.add("inactive-link");
-        link.classList.remove("active-link");
+        link.classList.add("text-gray-600");
       }
     });
   }
@@ -65,6 +59,9 @@ class SpecialHeader extends HTMLElement {
     });
   }
 }
+
+
+
 
 
 class SpecialFooter extends HTMLElement {
@@ -134,21 +131,25 @@ class SpecialFooter extends HTMLElement {
           <div class="mt-2 space-x-4">
             <a href="index" class="footer-link">Home</a>
             <a href="services" class="footer-link">Services</a>
-            <a href="contact" class="footer-link">Contact Us</a>
+            <a href="products" class="footer-link">Products</a>
             <a href="projects" class="footer-link">Projects</a>
+            <a href="contact" class="footer-link">Contact</a>
           </div>
         </div>
       </footer>
    <!-- Promotion Stripe -->
-<div class="w-full bg-gradient-to-b from-blue-100 to-white text-gray-600 py-2 text-center flex items-center justify-center">
-    <div class="container flex items-center justify-center">   
+<div class="w-full text-gray-600 py-2 text-center flex items-center justify-center">
+    <div class="container flex items-center justify-end">   
         <!-- Marquee Scrolling Text -->
-        <div class="flex items-center justify-center gap-2">
-            <a href="https://vybtek.com/" target="_blank" class="flex items-center gap-2">
-                <img src="https://vybtek.com/images/logo.png" alt="Company Logo" class="h-14">
-                <span class="text-sm md:text-lg font-semibold">
-                  Created with love by VybTek IT Solutions
-                </span>
+        <div class="flex items-center justify-end ">
+            <a href="https://vybtek.com/" target="_blank" class="flex items-center">
+            <span class="text-sm md:text-sm font-semibold">
+            Created by 
+            </span>
+            <img src="https://vybtek.com/images/logo.png" alt="Company Logo" class="h-10">
+            <span class="text-sm md:text-sm font-semibold">
+             VybTek IT Solutions
+            </span>
             </a>
         </div>
     </div>

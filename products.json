@@ -2,9 +2,40 @@
   {
     "id": "0447d71a-3813-425a-addc-5889f69d768a",
     "name": "Elegant Wooden Chair",
-    "price": "$120",
     "image": "https://ievo.in/wp-content/uploads/2020/07/furniture.png",
-    "description": "A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors."
+    "description": "A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors",
+    "types": [
+      {
+        "name": "Classic Black",
+        "image": "https://ievo.in/wp-content/uploads/2020/07/metal-and-stone.png",
+        "description": "A timeless black leather jacket for any occasion."
+      },
+      {
+        "name": "Brown Vintage",
+        "image": "https://ievo.in/wp-content/uploads/2020/07/metal-and-stone.png",
+        "description": "A stylish brown leather jacket with a vintage touch."
+      },
+      {
+        "name": "Modern Grey",
+        "image": "https://ievo.in/wp-content/uploads/2020/07/metal-and-stone.png",
+        "description": "A sleek grey leather jacket for a modern look."
+      },
+      {
+        "name": "Classic",
+        "image": "https://ievo.in/wp-content/uploads/2020/07/metal-and-stone.png",
+        "description": "A timeless black leather jacket for any occasion."
+      },
+      {
+        "name": "Vintage",
+        "image": "https://ievo.in/wp-content/uploads/2020/07/metal-and-stone.png",
+        "description": "A stylish brown leather jacket with a vintage touch."
+      },
+      {
+        "name": " Grey",
+        "image": "https://ievo.in/wp-content/uploads/2020/07/metal-and-stone.png",
+        "description": "A sleek grey leather jacket for a modern look."
+      }
+    ]
   },
   {
     "id": "0447d71a-3813-425a-addc-5889f99d764a",
@@ -40,33 +71,5 @@
     "price": "$199",
     "image": "https://ievo.in/wp-content/uploads/2020/07/ose-manufacturing-procurement.jpg",
     "description": "A high-back ergonomic office chair with lumbar support for maximum comfort during long working hours."
-  },
-  {
-    "id": "0447d71a-3813-425a-addc-5889f69d764b",
-    "name": "Luxury Leather Sofa",
-    "price": "$950",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "A stylish and comfortable luxury leather sofa that adds sophistication to your living room."
-  },
-  {
-    "id": "9b3c4cdb-881e-48be-bbaf-939076bfe8ec",
-    "name": "Beds",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "testing",
-    "price": "45"
-  },
-  {
-    "id": "ed75e8a4-d890-4004-919b-7ce8a2888291",
-    "name": "hello",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "hye",
-    "price": "565"
-  },
-  {
-    "id": "8466fc0f-ffa5-4d49-b227-df66b41edd98",
-    "name": "shirt",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "hh",
-    "price": "33"
   }
 ]

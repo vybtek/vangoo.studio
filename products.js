@@ -15,18 +15,17 @@ async function fetchProducts() {
       productCard.classList.add("text-center");
 
       productCard.innerHTML = `
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
-        <img src="${product.image}" alt="${product.name}" class="w-full h-60 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-bold text-gray-800">${product.name}</h3>
+      <div class="mb-6 bg-white shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+      <div class="p-2">
+          <h3 class="text-lg font-semibold text-gray-800">${product.name}</h3>
           <a href="product-detail.html?id=${product.id}" 
-             class="block text-center bg-red-500 text-white font-semibold px-5 py-2 rounded-lg mt-4 transition duration-300 hover:bg-red-600">
-            Discover More
+             class="block text-center text-gray-600 hover:text-red-500 rounded-lg ">
+            More Details <i class="fa-solid fa-arrow-right ml-1"></i>
           </a>
         </div>
+        <img src="${product.image}" alt="${product.name}" class="w-full h-60 object-cover">
       </div>
     `;
-
       productGrid.appendChild(productCard);
     });
   } catch (error) {
@@ -44,7 +43,7 @@ async function fetchProductDetail() {
 
   if (!productId) {
     productDetail.innerHTML =
-      "<p class='text-red-500 text-lg'>Product not found.</p>";
+      "<p class='text-red-500 text-lg text-center font-semibold'>Product not found.</p>";
     return;
   }
 
@@ -55,18 +54,34 @@ async function fetchProductDetail() {
     const product = await response.json();
 
     productDetail.innerHTML = `
-    <div class="max-w-3xl mx-auto bg-white overflow-hidden p-6">
-      <h1 class="text-4xl font-bold text-gray-900 text-center">${product.name}</h1>
+    <div class="max-w-5xl mx-auto bg-white/90 backdrop-blur-lg overflow-hidden p-8 mt-2">
+      <h1 class="text-4xl font-bold text-gray-900 text-center tracking-wide">${product.name}</h1>
       
-      <div class="mt-6">
-        <img src="${product.image}" class="w-full h-96 object-cover rounded-lg transition-transform duration-300">
+      <div class="mt-8 flex justify-center">
+        <img src="${product.image}" 
+             class="w-full max-h-[28rem] object-cover rounded-xl transition-transform duration-300 hover:shadow-xl">
       </div>
       
-      <p class="mt-6 text-lg text-gray-700 leading-relaxed text-justify">${product.description}</p>
+      <p class="mt-8 text-lg text-gray-700 leading-relaxed text-justify">${product.description}</p>
+
+      ${product.types && product.types.length > 0 ? `
+        <h2 class="text-3xl font-semibold text-gray-900 mt-10 text-center">Products List</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+          ${product.types.map(type => `
+            <div class="p-6 rounded-xl transition duration-300">
+              <img src="${type.image}" class="w-full h-52 object-cover">
+              <h3 class="text-2xl font-semibold text-gray-800 mt-4">${type.name}</h3>
+              <p class="text-gray-600 mt-3 text-sm leading-relaxed">${type.description}</p>
+            </div>
+          `).join("")}
+        </div>
+      ` : `
+        <p class="text-gray-500 mt-8 text-center">No product types available.</p>
+      `}
   
-      <div class="flex justify-center mt-6">
+      <div class="flex justify-center mt-10">
         <a href="products.html" 
-           class="bg-gray-800 text-white font-semibold px-6 py-3 rounded-lg transition duration-300 hover:bg-gray-900 hover:shadow-md">
+           class="bg-gradient-to-r from-gray-800 to-gray-900 text-white font-semibold px-8 py-3 rounded-full transition duration-300 hover:from-gray-700 hover:to-gray-800 hover:shadow-lg">
           ← Back to Products
         </a>
       </div>
@@ -74,9 +89,11 @@ async function fetchProductDetail() {
   `;
   } catch (error) {
     productDetail.innerHTML =
-      "<p class='text-red-500 text-lg'>Error loading product details.</p>";
+      "<p class='text-red-500 text-lg text-center font-semibold'>Error loading product details.</p>";
   }
 }
+
+
 
 // Run the appropriate function when the page loads
 document.addEventListener("DOMContentLoaded", () => {

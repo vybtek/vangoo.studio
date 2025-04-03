@@ -2,34 +2,56 @@
   {
     "id": "d0c01bd8-682f-462b-8b49-5ab9a7ecb973",
     "title": "Raffles, Udaipur",
-    "client": "testing",
     "image": "https://ievo.in/wp-content/uploads/2021/12/Hotel-Taj-01-1-scaled.jpg",
-    "description": "hhh"
+    "description": "Discover high-quality, stylish, and affordable furniture designed to transform your home. From modern living room sets to elegant dining tables and cozy bedroom collections, we have everything you need to create a space that reflects your personality.",
+    "images": [
+      {
+        "url": "https://ievo.in/wp-content/uploads/2021/09/fron-lounge-area-649x340.jpg",
+        "caption": "Interior",
+        "description": "Create a cozy retreat with our beautifully designed bedroom sets, featuring durable bed frames, comfortable mattresses, and elegant wardrobes.Dine in style with our exquisite dining tables, chairs, and sideboards. Perfect for family gatherings and special occasions."
+      },
+      {
+        "url": "https://ievo.in/wp-content/uploads/2020/09/138765189-510x340.jpg",
+        "caption": "Floring",
+         "description": "Create a cozy retreat with our beautifully designed bedroom sets, featuring durable bed frames, comfortable mattresses, and elegant wardrobes.Dine in style with our exquisite dining tables, chairs, and sideboards. Perfect for family gatherings and special occasions."
+      },
+      {
+        "url": "https://ievo.in/wp-content/uploads/2021/09/fron-lounge-area-649x340.jpg",
+        "caption": "Interior",
+        "description": "Create a cozy retreat with our beautifully designed bedroom sets, featuring durable bed frames, comfortable mattresses, and elegant wardrobes.Dine in style with our exquisite dining tables, chairs, and sideboards. Perfect for family gatherings and special occasions."
+      },
+      {
+        "url": "https://ievo.in/wp-content/uploads/2021/09/fron-lounge-area-649x340.jpg",
+        "caption": "Interior",
+        "description": "Create a cozy retreat with our beautifully designed bedroom sets, featuring durable bed frames, comfortable mattresses, and elegant wardrobes.Dine in style with our exquisite dining tables, chairs, and sideboards. Perfect for family gatherings and special occasions."
+      }
+    ],
+    "additionalContent": "Aurika, Udaipur "
   },
   {
     "id": "d0c01bd8-682f-462b-8b49-5ab9a7ecb973",
-    "title": "Taj Aravali Resort and Spa, Udaipur",
+    "title": "Taj Aravali Udaipur",
     "client": "testing",
     "image": "https://ievo.in/wp-content/uploads/2021/09/fron-lounge-area-649x340.jpg",
     "description": "hhh"
   },
   {
     "id": "d0c01bd8-682f-462b-8b49-5ab9a7ecb973",
-    "title": "Aurika, Udaipur – Luxury by Lemon Tree Hotels",
+    "title": "Aurika, Udaipur ",
     "client": "testing",
     "image": "https://ievo.in/wp-content/uploads/2020/09/aurika-udaipur-luxury-by-lemon-tree-hotels.jpg",
     "description": "hhh"
   },
   {
     "id": "d0c01bd8-682f-462b-8b49-5ab9a7ecb973",
-    "title": "Umaid Bhawan Palace by Taj, Jodhpur",
+    "title": "Umaid Bhawan",
     "client": "testing",
     "image": "https://ievo.in/wp-content/uploads/2020/09/42565128-447x340.jpg",
     "description": "hhh"
   },
   {
     "id": "d0c01bd8-682f-462b-8b49-5ab9a7ecb973",
-    "title": "Roseate London Cafe, United Kingdom",
+    "title": "Roseate   Kingdom",
     "client": "testing",
     "image": "https://ievo.in/wp-content/uploads/2020/09/138765189-510x340.jpg",
     "description": "hhh"
@@ -40,12 +62,5 @@
     "client": "testing",
     "image": "https://ievo.in/wp-content/uploads/2021/12/Hotel-Taj-01-1-scaled.jpg",
     "description": "hhh"
-  },
-  {
-    "id": "cd5092df-2cf2-447c-bc9c-3365f6834778",
-    "title": "nothing",
-    "client": "testing",
-    "image": "https://market-resized.envatousercontent.com/previews/files/549379670/00_preview.png?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=884eb239bf946207425b5f9288c339e36dc3fa9c94e0cc077bcd48868b169be1",
-    "description": "hh"
   }
 ]
