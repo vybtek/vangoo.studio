@@ -6,7 +6,6 @@ async function addProduct(event) {
 
   const product = {
     name: document.getElementById("name").value.trim(),
-    price: document.getElementById("price").value.trim(),
     image: document.getElementById("image").value.trim(),
     description: document.getElementById("description").value.trim(),
   };
@@ -23,9 +22,6 @@ async function addProduct(event) {
     const result = await response.json();
     alert(result.message);
 
-    // Display newly added product details
-    displayProductDetails(product);
-
     // Clear form after successful submission
     productForm.reset();
   } catch (error) {
@@ -33,21 +29,6 @@ async function addProduct(event) {
   }
 }
 
-function displayProductDetails(product) {
-  const productDetails = document.getElementById("product-details");
-  if (!productDetails) return; // Exit if the details section is missing
-
-  productDetails.innerHTML = `
-      <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
-        <h2 class="text-2xl font-bold text-gray-800 text-center">${product.name}</h2>
-        <img src="${product.image}" alt="${product.name}" class="mt-4 w-full h-80 object-cover rounded-lg shadow-md">
-        <p class="mt-4 text-lg text-gray-700 text-justify">${product.description}</p>
-        <p class="text-lg font-semibold text-gray-900 mt-2">Price: <span class="text-red-500">$${product.price}</span></p>
-      </div>
-    `;
-
-  productDetails.classList.remove("hidden"); // Make the section visible
-}
 
 // Attach event listener after the DOM loads
 document.addEventListener("DOMContentLoaded", () => {

@@ -43,15 +43,15 @@ app.get("/products/:id", (req, res) => {
 
 // POST: Add New Product
 app.post("/add-product", (req, res) => {
-  const { name, image, description, price } = req.body;
-  if (!name || !image || !description || !price) {
+  const { name, image, description} = req.body;
+  if (!name || !image || !description) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
   readFile(PRODUCTS_FILE, (err, products) => {
     if (err)
       return res.status(500).json({ error: "Error reading products file" });
-    const newProduct = { id: uuidv4(), name, image, description, price };
+    const newProduct = { id: uuidv4(), name, image, description };
     products.push(newProduct);
     fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), (err) => {
       if (err)
