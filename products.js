@@ -8,7 +8,7 @@ async function fetchProducts() {
     if (!response.ok) throw new Error("Failed to fetch products");
 
     const products = await response.json();
-    productGrid.innerHTML = ""; // Clear previous content
+    productGrid.innerHTML = "";
 
     products.forEach((product) => {
       const productCard = document.createElement("div");
@@ -68,16 +68,18 @@ async function fetchProductDetail() {
         <h2 class="text-3xl font-semibold text-gray-900 mt-10 text-center">Products List</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
           ${product.types.map(type => `
-            <div class="p-6 rounded-xl transition duration-300">
-              <img src="${type.image}" class="w-full h-52 object-cover">
+            <div class="p-6 rounded-xl transition duration-300 bg-white shadow hover:shadow-lg">
+              <img src="${type.image}" class="w-full h-52 object-cover rounded-md">
               <h3 class="text-2xl font-semibold text-gray-800 mt-4">${type.name}</h3>
               <p class="text-gray-600 mt-3 text-sm leading-relaxed">${type.description}</p>
+              <p class="text-lg font-semibold text-gray-900 mt-2">Price: ₹${type.price}</p>
             </div>
           `).join("")}
         </div>
       ` : `
         <p class="text-gray-500 mt-8 text-center">No product types available.</p>
       `}
+      
   
       <div class="flex justify-center mt-10">
         <a href="products.html" 

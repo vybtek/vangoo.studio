@@ -1,39 +1,59 @@
-async function addProduct(event) {
-  event.preventDefault();
+document.getElementById("add-type-btn").addEventListener("click", () => {
+  const container = document.getElementById("types-container");
 
-  const productForm = document.getElementById("product-form");
-  if (!productForm) return; // Exit if form is not found
+  const typeDiv = document.createElement("div");
+  typeDiv.className = "type-item space-y-2 border p-4 rounded-lg relative bg-gray-50";
 
-  const product = {
-    name: document.getElementById("name").value.trim(),
-    image: document.getElementById("image").value.trim(),
-    description: document.getElementById("description").value.trim(),
-  };
+  typeDiv.innerHTML = `
+    <div class="flex justify-between items-center">
+      <h4 class="font-semibold">Product Type</h4>
+      <button type="button" class="remove-type text-red-500 text-3xl">&times;</button>
+    </div>
+    <input type="text" class="type-name w-full p-2 border rounded" placeholder="Type Name" />
+    <input type="text" class="type-image w-full p-2 border rounded" placeholder="Type Image URL" />
+    <textarea class="type-description w-full p-2 border rounded" placeholder="Type Description"></textarea>
+    <input type="number" step="0.01" class="type-price w-full p-2 border rounded" placeholder="Type Price" />
+  `;
+
+  container.appendChild(typeDiv);
+
+  // Add remove event
+  typeDiv.querySelector(".remove-type").addEventListener("click", () => {
+    container.removeChild(typeDiv);
+  });
+});
+
+// Handle Product Form Submission
+document.getElementById("product-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const image = document.getElementById("image").value;
+  const description = document.getElementById("description").value;
+
+  const typeDivs = document.querySelectorAll(".type-item");
+  const types = Array.from(typeDivs).map(div => ({
+    name: div.querySelector(".type-name")?.value,
+    image: div.querySelector(".type-image")?.value,
+    description: div.querySelector(".type-description")?.value,
+    price: parseFloat(div.querySelector(".type-price")?.value)
+  })).filter(t => t.name && t.image && t.description && !isNaN(t.price));
 
   try {
     const response = await fetch("http://localhost:5000/add-product", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(product),
+      body: JSON.stringify({ name, image, description, types })
     });
 
-    if (!response.ok) throw new Error("Failed to add product");
-
-    const result = await response.json();
-    alert(result.message);
-
-    // Clear form after successful submission
-    productForm.reset();
-  } catch (error) {
-    alert("Error adding product: " + error.message);
-  }
-}
-
-
-// Attach event listener after the DOM loads
-document.addEventListener("DOMContentLoaded", () => {
-  const productForm = document.getElementById("product-form");
-  if (productForm) {
-    productForm.addEventListener("submit", addProduct);
+    const data = await response.json();
+    if (response.ok) {
+      alert("Product added successfully!");
+    } else {
+      alert(data.error || "Error adding product");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
   }
 });

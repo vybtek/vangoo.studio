@@ -43,23 +43,29 @@ app.get("/products/:id", (req, res) => {
 
 // POST: Add New Product
 app.post("/add-product", (req, res) => {
-  const { name, image, description} = req.body;
-  if (!name || !image || !description) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
+  const { name, image, description, types } = req.body;
+
+  const newProduct = {
+    id: uuidv4(),
+    name,
+    image,
+    description,
+    types: types || []
+  };
 
   readFile(PRODUCTS_FILE, (err, products) => {
-    if (err)
-      return res.status(500).json({ error: "Error reading products file" });
-    const newProduct = { id: uuidv4(), name, image, description };
+    if (err) return res.status(500).json({ error: "Error reading file" });
+
     products.push(newProduct);
+
     fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), (err) => {
-      if (err)
-        return res.status(500).json({ error: "Error writing products file" });
-      res.json({ message: "Product added successfully!", product: newProduct });
+      if (err) return res.status(500).json({ error: "Error saving product" });
+
+      res.status(201).json(newProduct);
     });
   });
 });
+
 
 // DELETE: Remove Product by ID
 app.delete("/products/:id", (req, res) => {
@@ -105,25 +111,47 @@ app.get("/projects/:id", (req, res) => {
   });
 });
 
-// POST: Add New Project
+// Add new project
 app.post("/add-project", (req, res) => {
-  const { title, client, image, description } = req.body;
-  if (!title || !client || !image || !description) {
-    return res.status(400).json({ error: "All fields are required" });
+  const { title, image, description, images, additionalContent } = req.body;
+
+  // Validate required fields
+  if (!title || !image || !description) {
+    return res.status(400).json({ error: "Title, image, and description are required." });
   }
 
-  readFile(PROJECTS_FILE, (err, projects) => {
-    if (err)
-      return res.status(500).json({ error: "Error reading projects file" });
-    const newProject = { id: uuidv4(), title, client, image, description };
+  const newProject = {
+    id: uuidv4(),
+    title,
+    image,
+    description,
+    images: images || [], // optional array of detailed image objects
+    additionalContent: additionalContent || ""
+  };
+
+  // Read existing projects
+  fs.readFile(PROJECTS_FILE, "utf-8", (err, data) => {
+    if (err) return res.status(500).json({ error: "Error reading file" });
+
+    let projects = [];
+    try {
+      projects = JSON.parse(data);
+    } catch (parseErr) {
+      return res.status(500).json({ error: "Error parsing existing projects" });
+    }
+
     projects.push(newProject);
+
+    // Save updated projects
     fs.writeFile(PROJECTS_FILE, JSON.stringify(projects, null, 2), (err) => {
-      if (err)
-        return res.status(500).json({ error: "Error writing projects file" });
-      res.json({ message: "Project added successfully!", project: newProject });
+      if (err) return res.status(500).json({ error: "Error saving project" });
+
+      res.status(201).json({ message: "Project added successfully", project: newProject });
     });
   });
 });
+
+
 
 // DELETE: Remove Project by ID
 app.delete("/projects/:id", (req, res) => {
