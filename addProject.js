@@ -6,8 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add new image field group
   addImageButton.addEventListener("click", () => {
     const imageGroup = document.createElement("div");
-    imageGroup.classList.add("mb-4", "relative", "border", "p-4", "rounded-lg", "bg-gray-50");
-  
+    imageGroup.classList.add(
+      "mb-4",
+      "relative",
+      "border",
+      "p-4",
+      "rounded-lg",
+      "bg-gray-50"
+    );
+
     imageGroup.innerHTML = `
       <button type="button" class="remove-image absolute top-0 right-0 text-red-500 text-4xl hover:text-red-700">&times;</button>
       <input
@@ -28,15 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
         class="w-full p-2 border rounded-lg"
       ></textarea>
     `;
-  
+
     imageFields.appendChild(imageGroup);
-  
+
     // Add event to remove this image group
     imageGroup.querySelector(".remove-image").addEventListener("click", () => {
       imageFields.removeChild(imageGroup);
     });
   });
-  
 
   // Handle form submission
   projectForm.addEventListener("submit", async (event) => {
@@ -45,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById("title").value.trim();
     const image = document.getElementById("image").value.trim();
     const description = document.getElementById("description").value.trim();
-    const additionalContent = document.getElementById("additionalContent").value.trim();
+    const additionalContent = document
+      .getElementById("additionalContent")
+      .value.trim();
 
     // Get all image groups (children divs inside imageFields)
     const imageGroups = imageFields.querySelectorAll("div");
@@ -53,8 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     imageGroups.forEach((group) => {
       const url = group.querySelector('input[name="image-url"]')?.value.trim();
-      const caption = group.querySelector('input[name="image-caption"]')?.value.trim();
-      const desc = group.querySelector('textarea[name="image-description"]')?.value.trim();
+      const caption = group
+        .querySelector('input[name="image-caption"]')
+        ?.value.trim();
+      const desc = group
+        .querySelector('textarea[name="image-description"]')
+        ?.value.trim();
 
       if (url && caption && desc) {
         images.push({ url, caption, description: desc });
@@ -66,16 +78,16 @@ document.addEventListener("DOMContentLoaded", () => {
       image,
       description,
       images,
-      additionalContent
+      additionalContent,
     };
 
     try {
       const response = await fetch("http://localhost:5000/add-project", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(projectData)
+        body: JSON.stringify(projectData),
       });
 
       if (!response.ok) throw new Error("Failed to add project");

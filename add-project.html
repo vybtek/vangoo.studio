@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Project</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="addProject.js" defer></script>
     <script>
@@ -15,22 +19,22 @@
   </head>
   <body class="bg-gray-100 flex">
     <!-- Sidebar -->
-    <div class="w-1/4 bg-gray-800 text-white p-5">
+    <div class="w-[20%] bg-gray-800 text-white p-5">
       <h2
         class="text-2xl font-bold mb-5 cursor-pointer"
         onclick="window.location.href='dashboard.html'"
       >
-        Dashboard
+        <i class="fa-solid fa-house"></i> Dashboard
       </h2>
       <ul>
         <li class="mb-3">
           <a href="add-product.html" class="block p-2 bg-gray-700 rounded"
-            >Add Product</a
+            ><i class="fa-solid fa-plus mr-2"></i>Add Product</a
           >
         </li>
         <li class="mb-3">
           <a href="add-project.html" class="block p-2 bg-gray-700 rounded"
-            >Add Project</a
+            ><i class="fa-solid fa-plus mr-2"></i>Add Project</a
           >
         </li>
         <li>
@@ -38,7 +42,7 @@
             onclick="logout()"
             class="w-full mt-4 bg-red-500 p-2 rounded hover:bg-red-600"
           >
-            Logout
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
           </button>
         </li>
       </ul>
@@ -48,7 +52,7 @@
     <div class="flex justify-center items-center w-3/4">
       <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-2xl">
         <h1 class="text-2xl font-bold text-center text-gray-700 mb-4">
-          Add New Project
+          ADD NEW PROJECT
         </h1>
         <form id="project-form" class="space-y-4">
           <input
@@ -97,9 +101,9 @@
           <button
             type="button"
             id="add-image"
-            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300"
           >
-            Add Another Image
+            + Add More Images
           </button>
 
           <textarea
@@ -110,9 +114,9 @@
 
           <button
             type="submit"
-            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full"
           >
-            Submit Project
+            Add Project
           </button>
         </form>
       </div>

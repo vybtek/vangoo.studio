@@ -39,11 +39,16 @@ class SpecialHeader extends HTMLElement {
   }
 
   activateCurrentNavLink() {
-    const navLinks = this.querySelectorAll("#nav-menu .nav-link, #mobile-menu .nav-link");
-    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    const navLinks = this.querySelectorAll(
+      "#nav-menu .nav-link, #mobile-menu .nav-link"
+    );
+    const currentPath =
+      window.location.pathname.split("/").pop() || "index.html";
 
     navLinks.forEach((link) => {
-      const linkPath = link.getAttribute("href") ? link.getAttribute("href").split("/").pop() : null;
+      const linkPath = link.getAttribute("href")
+        ? link.getAttribute("href").split("/").pop()
+        : null;
 
       if (linkPath === currentPath) {
         link.classList.add("text-blue-600", "font-semibold");
@@ -59,10 +64,6 @@ class SpecialHeader extends HTMLElement {
     });
   }
 }
-
-
-
-
 
 class SpecialFooter extends HTMLElement {
   connectedCallback() {
@@ -102,7 +103,7 @@ class SpecialFooter extends HTMLElement {
     <h3 class="text-lg font-semibold">Contact Info</h3>
     <ul class="mt-2 space-y-2 text-gray-600">
         <li>
-            <a href="https://maps.app.goo.gl/bhadKHqrtPvyghnb7" target="_blank" class="flex items-center space-x-2">
+            <a href="#" target="_blank" class="flex items-center space-x-2">
                 <i class="fas fa-map-marker-alt text-blue-500"></i>
                 <span> Udaipur, Rajasthan 313001</span>
             </a>
@@ -116,7 +117,7 @@ class SpecialFooter extends HTMLElement {
         <li>
             <a href="mailto:vybtek@gmail.com" class="flex items-center space-x-2">
                 <i class="fas fa-envelope text-blue-500"></i>
-                <span>suppot@vangoo.com</span>
+                <span>support@vangoo.com</span>
             </a>
         </li>
          <li><i class="fas fa-clock text-blue-500"></i> Opening Hours: 10:00 - 18:00</li>

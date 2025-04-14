@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <script>
       // Redirect if not logged in
       if (localStorage.getItem("isLoggedIn") !== "true") {
@@ -12,25 +16,25 @@
       }
     </script>
   </head>
-  <body class="bg-gray-100 h-screen">
+  <body class="bg-gray-100">
     <div class="flex h-full">
       <!-- Sidebar -->
-      <div class="w-1/4 bg-gray-800 text-white p-5">
+      <div class="w-[20%] bg-gray-800 text-white p-5">
         <h2
           class="text-2xl font-bold mb-5 cursor-pointer"
           onclick="window.location.href='dashboard.html'"
         >
-          Dashboard
+          <i class="fa-solid fa-house"></i> Dashboard
         </h2>
         <ul>
           <li class="mb-3">
             <a href="add-product.html" class="block p-2 bg-gray-700 rounded"
-              >Add Product</a
+              ><i class="fa-solid fa-plus mr-2"></i>Add Product</a
             >
           </li>
           <li class="mb-3">
             <a href="add-project.html" class="block p-2 bg-gray-700 rounded"
-              >Add Project</a
+              ><i class="fa-solid fa-plus mr-2"></i>Add Project</a
             >
           </li>
           <li>
@@ -38,45 +42,71 @@
               onclick="logout()"
               class="w-full mt-4 bg-red-500 p-2 rounded hover:bg-red-600"
             >
-              Logout
+              <i class="fa-solid fa-right-from-bracket"></i> Logout
             </button>
           </li>
         </ul>
       </div>
 
       <!-- Main content -->
-      <div class="flex-1 p-6">
-        <h1 class="text-3xl font-bold mb-6">Welcome to the Dashboard</h1>
+      <div class="flex-1 p-6 bg-gray-100 min-h-screen">
+        <h1 class="text-4xl font-extrabold mb-8 text-gray-800">
+          Welcome to the Dashboard
+        </h1>
 
         <!-- Stats Overview -->
-        <div class="grid grid-cols-3 gap-6 mb-6">
-          <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-bold">Total Sales</h2>
-            <p class="text-2xl mt-2">$15,230</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div
+            class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
+          >
+            <h2 class="text-lg font-semibold text-gray-600">Total Sales</h2>
+            <p class="text-3xl font-bold text-green-600 mt-2">$15,230</p>
           </div>
-          <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-bold">Active Projects</h2>
-            <p class="text-2xl mt-2">8</p>
+          <div
+            class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
+          >
+            <h2 class="text-lg font-semibold text-gray-600">Active Projects</h2>
+            <p class="text-3xl font-bold text-blue-600 mt-2">8</p>
           </div>
-          <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-bold">New Clients</h2>
-            <p class="text-2xl mt-2">23</p>
+          <div
+            class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
+          >
+            <h2 class="text-lg font-semibold text-gray-600">New Clients</h2>
+            <p class="text-3xl font-bold text-purple-600 mt-2">23</p>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-white p-6 rounded-2xl shadow mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-gray-800">Quick Actions</h2>
+          <div class="flex flex-wrap gap-4">
+            <button
+              class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-xl transition"
+            >
+              ➕ Add New Product
+            </button>
+            <button
+              class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-xl transition"
+            >
+              📈 View Reports
+            </button>
+            <button
+              class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-xl transition"
+            >
+              🔧 Manage Settings
+            </button>
           </div>
         </div>
 
         <!-- Recent Activities -->
-        <div class="bg-white p-6 rounded shadow">
-          <h2 class="text-2xl font-bold mb-4">Recent Activities</h2>
-          <ul>
-            <li class="mb-2">
-              ✅ New product added: <strong>CRM Software</strong>
-            </li>
-            <li class="mb-2">
-              📌 Project <strong>Website</strong> updated
-            </li>
-            <li class="mb-2">
-              💼 New client <strong>Arpit</strong> registered
-            </li>
+        <div class="bg-white p-6 rounded-2xl shadow mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-gray-800">
+            Recent Activities
+          </h2>
+          <ul class="space-y-3 text-gray-700">
+            <li>📌 Project <strong>Website</strong> updated</li>
+            <li>💼 New client <strong>Arpit</strong> registered</li>
+            <li>🛠 Maintenance scheduled for <strong>Server A</strong></li>
           </ul>
         </div>
       </div>

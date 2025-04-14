@@ -4,17 +4,17 @@ async function fetchProjects() {
   if (!projectGrid) return; // Exit if not on the projects page
 
   try {
-      const response = await fetch("http://localhost:5000/projects");
-      if (!response.ok) throw new Error("Failed to fetch projects");
+    const response = await fetch("http://localhost:5000/projects");
+    if (!response.ok) throw new Error("Failed to fetch projects");
 
-      const projects = await response.json();
-      projectGrid.innerHTML = ""; // Clear previous content
+    const projects = await response.json();
+    projectGrid.innerHTML = ""; // Clear previous content
 
-      projects.forEach((project) => {
-          const projectCard = document.createElement("div");
-          projectCard.classList.add("relative", "p-4");
+    projects.forEach((project) => {
+      const projectCard = document.createElement("div");
+      projectCard.classList.add("relative", "p-4");
 
-          projectCard.innerHTML = `
+      projectCard.innerHTML = `
           <div class="bg-gray-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 p-6">
             <img src="${project.image}" alt="${project.title}" class="w-full h-60 object-cover rounded-lg">
             <div class="mt-4">
@@ -27,14 +27,12 @@ async function fetchProjects() {
           </div>
         `;
 
-          projectGrid.appendChild(projectCard);
-      });
+      projectGrid.appendChild(projectCard);
+    });
   } catch (error) {
-      console.error(error);
+    console.error(error);
   }
 }
-
-  
 
 // Function to fetch and display a single project's details
 async function fetchProjectDetail() {
@@ -45,7 +43,8 @@ async function fetchProjectDetail() {
   const projectId = params.get("id");
 
   if (!projectId) {
-    projectDetail.innerHTML = "<p class='text-red-500 text-lg'>Project not found.</p>";
+    projectDetail.innerHTML =
+      "<p class='text-red-500 text-lg'>Project not found.</p>";
     return;
   }
 
@@ -56,49 +55,67 @@ async function fetchProjectDetail() {
     const project = await response.json();
 
     // Alternating left-right layout for additional images with descriptions
-    const imagesWithContent = project.images && project.images.length > 0
-      ? `
+    const imagesWithContent =
+      project.images && project.images.length > 0
+        ? `
         <section class="max-w-6xl mx-auto mt-16">
           <h2 class="text-3xl font-bold text-center text-gray-800">More About This Project</h2>
           <div class="mt-8 space-y-12">
-            ${project.images.map((img, index) => `
-              <div class="flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8">
+            ${project.images
+              .map(
+                (img, index) => `
+              <div class="flex flex-col md:flex-row ${
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              } items-center gap-8">
                 <div class="w-full md:w-1/2 overflow-hidden rounded-lg shadow-md group">
-                  <img src="${img.url}" alt="${img.caption}" class="w-full h-80 object-cover rounded-lg transition-transform duration-500">
+                  <img src="${img.url}" alt="${
+                  img.caption
+                }" class="w-full h-80 object-cover rounded-lg transition-transform duration-500">
                 </div>
                 <div class="w-full md:w-1/2 text-center md:text-left">
-                  <h3 class="text-xl font-semibold text-gray-800">${img.caption || "Additional Image"}</h3>
-                  <p class="text-gray-600 mt-2">${img.description || "No additional details provided."}</p>
+                  <h3 class="text-xl font-semibold text-gray-800">${
+                    img.caption || "Additional Image"
+                  }</h3>
+                  <p class="text-gray-600 mt-2">${
+                    img.description || "No additional details provided."
+                  }</p>
                 </div>
               </div>
-            `).join("")}
+            `
+              )
+              .join("")}
           </div>
         </section>
       `
-      : "";
+        : "";
 
     // Project Gallery Section (With Swiper Slider)
-    const imagesSection = project.images && project.images.length > 0
-      ? `
+    const imagesSection =
+      project.images && project.images.length > 0
+        ? `
         <section class="max-w-6xl mx-auto mt-16">
           <h2 class="text-3xl font-bold text-center text-gray-800">Project Gallery</h2>
           <div class="swiper-container mt-8">
             <div class="swiper-wrapper">
-              ${project.images.map((img) => `
+              ${project.images
+                .map(
+                  (img) => `
                 <div class="swiper-slide">
                   <div class="rounded-md shadow-lg overflow-hidden">
                     <img src="${img.url}" alt="${img.caption}" class="w-full h-72 object-cover rounded-md">
                   </div>
                 </div>
-              `).join("")}
+              `
+                )
+                .join("")}
             </div>         
             <!-- Swiper Pagination -->
             <div class="swiper-pagination"></div>
           </div>
         </section>
       `
-      : "";
-  
+        : "";
+
     projectDetail.innerHTML = `
       <div class="max-w-full w-full mx-auto bg-white overflow-hidden">
         
@@ -159,23 +176,14 @@ async function fetchProjectDetail() {
         });
       }
     }, 500);
-    
-    
-    
-
   } catch (error) {
-    projectDetail.innerHTML = "<p class='text-red-500 text-lg'>Error loading project details.</p>";
+    projectDetail.innerHTML =
+      "<p class='text-red-500 text-lg'>Error loading project details.</p>";
   }
 }
 
-
-
-
-
-  
-  // Run the appropriate function when the page loads
-  document.addEventListener("DOMContentLoaded", () => {
-    fetchProjects();
-    fetchProjectDetail();
-  });
-  
+// Run the appropriate function when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  fetchProjects();
+  fetchProjectDetail();
+});

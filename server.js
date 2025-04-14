@@ -50,7 +50,7 @@ app.post("/add-product", (req, res) => {
     name,
     image,
     description,
-    types: types || []
+    types: types || [],
   };
 
   readFile(PRODUCTS_FILE, (err, products) => {
@@ -65,7 +65,6 @@ app.post("/add-product", (req, res) => {
     });
   });
 });
-
 
 // DELETE: Remove Product by ID
 app.delete("/products/:id", (req, res) => {
@@ -117,7 +116,9 @@ app.post("/add-project", (req, res) => {
 
   // Validate required fields
   if (!title || !image || !description) {
-    return res.status(400).json({ error: "Title, image, and description are required." });
+    return res
+      .status(400)
+      .json({ error: "Title, image, and description are required." });
   }
 
   const newProject = {
@@ -126,7 +127,7 @@ app.post("/add-project", (req, res) => {
     image,
     description,
     images: images || [], // optional array of detailed image objects
-    additionalContent: additionalContent || ""
+    additionalContent: additionalContent || "",
   };
 
   // Read existing projects
@@ -146,12 +147,12 @@ app.post("/add-project", (req, res) => {
     fs.writeFile(PROJECTS_FILE, JSON.stringify(projects, null, 2), (err) => {
       if (err) return res.status(500).json({ error: "Error saving project" });
 
-      res.status(201).json({ message: "Project added successfully", project: newProject });
+      res
+        .status(201)
+        .json({ message: "Project added successfully", project: newProject });
     });
   });
 });
-
-
 
 // DELETE: Remove Project by ID
 app.delete("/projects/:id", (req, res) => {

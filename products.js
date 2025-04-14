@@ -54,31 +54,43 @@ async function fetchProductDetail() {
     const product = await response.json();
 
     productDetail.innerHTML = `
-    <div class="max-w-5xl mx-auto bg-white/90 backdrop-blur-lg overflow-hidden p-8 mt-2">
-      <h1 class="text-4xl font-bold text-gray-900 text-center tracking-wide">${product.name}</h1>
+    <div class="max-w-6xl mx-auto bg-white/90 backdrop-blur-lg overflow-hidden p-8 mt-2">
+      <h1 class="text-4xl font-bold text-gray-900 text-center tracking-wide">${
+        product.name
+      }</h1>
       
       <div class="mt-8 flex justify-center">
         <img src="${product.image}" 
              class="w-full max-h-[28rem] object-cover rounded-xl transition-transform duration-300 hover:shadow-xl">
       </div>
       
-      <p class="mt-8 text-lg text-gray-700 leading-relaxed text-justify">${product.description}</p>
+      <p class="mt-8 text-lg text-gray-700 leading-relaxed text-justify">${
+        product.description
+      }</p>
 
-      ${product.types && product.types.length > 0 ? `
+      ${
+        product.types && product.types.length > 0
+          ? `
         <h2 class="text-3xl font-semibold text-gray-900 mt-10 text-center">Products List</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
-          ${product.types.map(type => `
+          ${product.types
+            .map(
+              (type) => `
             <div class="p-6 rounded-xl transition duration-300 bg-white shadow hover:shadow-lg">
               <img src="${type.image}" class="w-full h-52 object-cover rounded-md">
               <h3 class="text-2xl font-semibold text-gray-800 mt-4">${type.name}</h3>
               <p class="text-gray-600 mt-3 text-sm leading-relaxed">${type.description}</p>
               <p class="text-lg font-semibold text-gray-900 mt-2">Price: ₹${type.price}</p>
             </div>
-          `).join("")}
+          `
+            )
+            .join("")}
         </div>
-      ` : `
+      `
+          : `
         <p class="text-gray-500 mt-8 text-center">No product types available.</p>
-      `}
+      `
+      }
       
   
       <div class="flex justify-center mt-10">
@@ -94,8 +106,6 @@ async function fetchProductDetail() {
       "<p class='text-red-500 text-lg text-center font-semibold'>Error loading product details.</p>";
   }
 }
-
-
 
 // Run the appropriate function when the page loads
 document.addEventListener("DOMContentLoaded", () => {
