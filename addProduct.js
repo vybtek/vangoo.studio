@@ -7,13 +7,13 @@ document.getElementById("add-type-btn").addEventListener("click", () => {
 
   typeDiv.innerHTML = `
     <div class="flex justify-between items-center">
-      <h4 class="font-semibold">Product Type</h4>
+      <h4 class="font-semibold">Add Product Type</h4>
       <button type="button" class="remove-type text-red-500 text-3xl">&times;</button>
     </div>
     <input type="text" class="type-name w-full p-2 border rounded" placeholder="Type Name" />
     <input type="text" class="type-image w-full p-2 border rounded" placeholder="Type Image URL" />
-    <textarea class="type-description w-full p-2 border rounded" placeholder="Type Description"></textarea>
     <input type="number" step="0.01" class="type-price w-full p-2 border rounded" placeholder="Type Price" />
+    <textarea class="type-description w-full p-2 border rounded" placeholder="Type Description"></textarea>
   `;
 
   container.appendChild(typeDiv);

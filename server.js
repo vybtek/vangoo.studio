@@ -9,6 +9,7 @@ app.use(cors());
 
 const PRODUCTS_FILE = "products.json";
 const PROJECTS_FILE = "projects.json";
+const BLOGS_FILE = "blogs.json";
 
 // Helper function to read JSON files
 function readFile(file, callback) {
@@ -173,6 +174,73 @@ app.delete("/projects/:id", (req, res) => {
         res.json({ message: "Project deleted successfully!" });
       }
     );
+  });
+});
+
+// POST: Add New Blog
+app.post("/add-blog", (req, res) => {
+  const { title, author, image, content } = req.body;
+
+  // Validate required fields
+  if (!title || !image || !author || !content) {
+    return res.status(400).json({ error: "All fields are required." });
+  }
+
+  const newBlog = {
+    id: uuidv4(),
+    title,
+    author,
+    image,
+    content,
+  };
+
+  // Read existing blogs
+  fs.readFile(BLOGS_FILE, "utf-8", (err, data) => {
+    if (err) {
+      console.error("Error reading blogs file:", err); // Log error for debugging
+      return res.status(500).json({ error: "Error reading blogs file" });
+    }
+
+    let blogs = [];
+    try {
+      blogs = JSON.parse(data);
+    } catch (parseErr) {
+      console.error("Error parsing existing blogs:", parseErr); // Log error for debugging
+      return res.status(500).json({ error: "Error parsing existing blogs" });
+    }
+
+    blogs.push(newBlog);
+
+    // Save updated blogs
+    fs.writeFile(BLOGS_FILE, JSON.stringify(blogs, null, 2), (err) => {
+      if (err) {
+        console.error("Error saving blog:", err); // Log error for debugging
+        return res.status(500).json({ error: "Error saving blog" });
+      }
+
+      res.status(201).json({
+        message: "Blog added successfully",
+        blog: newBlog,
+      });
+    });
+  });
+});
+
+// GET: All Blogs
+app.get("/blogs", (req, res) => {
+  readFile(BLOGS_FILE, (err, blogs) => {
+    if (err) return res.status(500).json({ error: "Error reading blogs file" });
+    res.json(blogs);
+  });
+});
+
+// GET: Single Blog by ID
+app.get("/blogs/:id", (req, res) => {
+  readFile(BLOGS_FILE, (err, blogs) => {
+    if (err) return res.status(500).json({ error: "Error reading blogs file" });
+    const blog = blogs.find((b) => b.id === req.params.id);
+    if (!blog) return res.status(404).json({ error: "Blog not found" });
+    res.json(blog);
   });
 });
 

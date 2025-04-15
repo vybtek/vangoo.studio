@@ -1,4 +1,4 @@
-// Function to fetch and display all products
+// Function to fetch and display all products list
 async function fetchProducts() {
   const productGrid = document.getElementById("product-grid");
   if (!productGrid) return; // Exit if not on the products page
