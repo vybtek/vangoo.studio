@@ -18,7 +18,13 @@ function readFile(file, callback) {
       callback(err, null);
       return;
     }
-    callback(null, JSON.parse(data || "[]"));
+
+    try {
+      const parsedData = JSON.parse(data || "[]");
+      callback(null, parsedData);
+    } catch (parseError) {
+      callback(parseError, null); // Safely handle malformed JSON
+    }
   });
 }
 
@@ -51,6 +57,7 @@ app.post("/add-product", (req, res) => {
     name,
     image,
     description,
+    active: false,
     types: types || [],
   };
 
@@ -86,6 +93,56 @@ app.delete("/products/:id", (req, res) => {
         res.json({ message: "Product deleted successfully!" });
       }
     );
+  });
+});
+
+//
+app.patch("/products/:id", (req, res) => {
+  const { id } = req.params;
+  const { active } = req.body;
+
+  const products = JSON.parse(fs.readFileSync("products.json", "utf-8"));
+  const productIndex = products.findIndex((p) => p.id === id);
+
+  if (productIndex === -1) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+
+  products[productIndex].active = active;
+  fs.writeFileSync("products.json", JSON.stringify(products, null, 2));
+  res.json(products[productIndex]);
+});
+
+// PUT: Edit a Product by ID
+app.put("/products/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, image, description, types } = req.body;
+
+  // Read the products file
+  readFile(PRODUCTS_FILE, (err, products) => {
+    if (err)
+      return res.status(500).json({ error: "Error reading products file" });
+
+    // Find the product to update
+    const productIndex = products.findIndex((p) => p.id === id);
+    if (productIndex === -1)
+      return res.status(404).json({ error: "Product not found" });
+
+    // Update the product details
+    products[productIndex] = {
+      ...products[productIndex],
+      name: name || products[productIndex].name,
+      image: image || products[productIndex].image,
+      description: description || products[productIndex].description,
+      types: types || products[productIndex].types,
+    };
+
+    // Write the updated products back to the file
+    fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2), (err) => {
+      if (err)
+        return res.status(500).json({ error: "Error saving updated product" });
+      res.json(products[productIndex]);
+    });
   });
 });
 
@@ -155,14 +212,17 @@ app.post("/add-project", (req, res) => {
   });
 });
 
-// DELETE: Remove Project by ID
 app.delete("/projects/:id", (req, res) => {
   readFile(PROJECTS_FILE, (err, projects) => {
     if (err)
       return res.status(500).json({ error: "Error reading projects file" });
-    const updatedProjects = projects.filter((p) => p.id !== req.params.id);
+
+    const idToDelete = req.params.id;
+    const updatedProjects = projects.filter((p) => String(p.id) !== idToDelete);
+
     if (updatedProjects.length === projects.length)
       return res.status(404).json({ error: "Project not found" });
+
     fs.writeFile(
       PROJECTS_FILE,
       JSON.stringify(updatedProjects, null, 2),
@@ -174,6 +234,35 @@ app.delete("/projects/:id", (req, res) => {
         res.json({ message: "Project deleted successfully!" });
       }
     );
+  });
+});
+
+
+app.put("/projects/:id", (req, res) => {
+  const { title, image, description, images, additionalContent } = req.body;
+  getProjects((err, projects) => {
+    if (err) return res.status(500).json({ error: "Error reading file" });
+
+    const index = projects.findIndex((p) => p.id === req.params.id);
+    if (index === -1)
+      return res.status(404).json({ error: "Project not found" });
+
+    projects[index] = {
+      ...projects[index],
+      title: title || projects[index].title,
+      image: image || projects[index].image,
+      description: description || projects[index].description,
+      images: images || projects[index].images,
+      additionalContent: additionalContent || projects[index].additionalContent,
+    };
+
+    saveProjects(projects, (err) => {
+      if (err) return res.status(500).json({ error: "Error updating project" });
+      res.json({
+        message: "Project updated successfully",
+        project: projects[index],
+      });
+    });
   });
 });
 

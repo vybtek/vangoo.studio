@@ -34,6 +34,85 @@ async function fetchProjects() {
   }
 }
 
+async function fetchProjects(containerId = "project-grid", view = "default") {
+  const projectGrid = document.getElementById(containerId);
+  if (!projectGrid) return;
+
+  try {
+    const response = await fetch("http://localhost:5000/projects");
+    if (!response.ok) throw new Error("Failed to fetch projects");
+
+    const projects = await response.json();
+    projectGrid.innerHTML = "";
+
+    projects.forEach((project) => {
+      if (view === "default" && !project.active) return;
+
+      const projectCard = document.createElement("div");
+      projectCard.classList.add("text-center");
+
+      if (view === "dashboard") {
+        const isActive = project.active;
+        projectCard.innerHTML = `
+          <div class="bg-white p-4 rounded-lg shadow flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <img src="${project.image}" alt="${
+          project.title
+        }" class="w-16 h-16 object-cover rounded" />
+              <div class="text-left">
+                <h4 class="font-semibold text-gray-800">${project.title}</h4>
+                <p class="text-sm text-gray-500 truncate">${
+                  project.description?.slice(0, 60) || ""
+                }</p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <a href="update-project.html?id=${
+                project.id
+              }" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">Edit</a>
+              <button onclick="deleteProject('${
+                project.id
+              }')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Delete</button>
+              <button onclick="toggleProjectActive('${
+                project.id
+              }', ${isActive})" class="${
+          isActive
+            ? "bg-yellow-500 hover:bg-yellow-600"
+            : "bg-green-500 hover:bg-green-600"
+        } text-white px-3 py-1 rounded text-sm">
+                ${isActive ? "Deactivate" : "Activate"}
+              </button>
+              <a href="project-detail.html?id=${
+                project.id
+              }" class="bg-gray-200 text-black px-3 py-1 rounded text-sm">View</a>
+            </div>
+          </div>
+        `;
+      } else {
+        projectCard.innerHTML = `
+          <a href="project-detail.html?id=${project.id}" class="block">
+  <div class="bg-gray-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 p-6">
+    <img src="${project.image}" alt="${project.title}" class="w-full h-60 object-cover rounded-lg">
+    <div class="mt-4">
+      <h3 class="text-xl font-semibold text-gray-900">${project.title}</h3>
+      <div class="mt-5 text-center">
+        <span class="block w-full text-center bg-gray-900 text-white font-medium px-5 py-3 rounded-lg transition-all duration-300 hover:bg-gray-800">
+          View Details
+        </span>
+      </div>
+    </div>
+  </div>
+</a>
+        `;
+      }
+
+      projectGrid.appendChild(projectCard);
+    });
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+  }
+}
+
 // Function to fetch and display a single project's details
 async function fetchProjectDetail() {
   const projectDetail = document.getElementById("project-detail");
@@ -182,8 +261,168 @@ async function fetchProjectDetail() {
   }
 }
 
+
+async function deleteProject(id) {
+  if (confirm("Are you sure you want to delete this project?")) {
+    try {
+      const response = await fetch(`http://localhost:5000/projects/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete project");
+
+      // Option 1: Refresh view
+      location.reload();
+
+      // Option 2 (better): Re-fetch projects without reload
+      // await fetchProjects("project-grid", "dashboard");
+    } catch (error) {
+      console.error("Error deleting project:", error);
+    }
+  }
+}
+
+
+// async function toggleActive(productId, currentStatus) {
+//   try {
+//     const response = await fetch(`http://localhost:5000/products/${productId}`, {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ active: !currentStatus }),
+//     });
+
+//     if (!response.ok) throw new Error("Failed to update product status");
+
+//     // Refresh dashboard list
+//     fetchProducts("dashboard-product-list", "dashboard");
+//   } catch (error) {
+//     console.error("Error toggling product active status:", error);
+//     alert("Failed to update product status.");
+//   }
+// }
+
+// Fetch product by ID to populate the update form
+// async function fetchProductForUpdate() {
+//   const params = new URLSearchParams(window.location.search);
+//   const productId = params.get("id");
+
+//   if (!productId) {
+//     alert("Product not found!");
+//     return;
+//   }
+
+//   try {
+//     const response = await fetch(`http://localhost:5000/products/${productId}`);
+//     if (!response.ok) throw new Error("Failed to fetch product details");
+
+//     const product = await response.json();
+//     populateForm(product);
+//   } catch (error) {
+//     console.error("Error fetching product:", error);
+//     alert("Failed to load product data.");
+//   }
+// }
+
+// Populate the update form with product data
+// function populateForm(product) {
+//   document.getElementById("product-id").value = product.id;
+//   document.getElementById("name").value = product.name;
+//   document.getElementById("image").value = product.image;
+//   document.getElementById("description").value = product.description;
+
+//   // Populate the product types (if any)
+//   const typesContainer = document.getElementById("types-container");
+//   typesContainer.innerHTML = ""; // Clear previous types
+
+//   if (Array.isArray(product.types) && product.types.length > 0) {
+//     product.types.forEach((type, index) => {
+//       const typeDiv = document.createElement("div");
+//       typeDiv.classList.add("space-y-2");
+
+//       typeDiv.innerHTML = `
+//         <h4 class="font-semibold">Product Type ${index + 1}</h4>
+//         <div>
+//           <label for="type-name-${index}" class="block">Type Name</label>
+//           <input type="text" id="type-name-${index}" class="w-full p-2 border rounded" value="${type.name}">
+//         </div>
+//         <div>
+//           <label for="type-description-${index}" class="block">Type Description</label>
+//           <textarea id="type-description-${index}" class="w-full p-2 border rounded">${type.description}</textarea>
+//         </div>
+//         <div>
+//           <label for="type-price-${index}" class="block">Type Price</label>
+//           <input type="number" id="type-price-${index}" class="w-full p-2 border rounded" value="${type.price}">
+//         </div>
+//         <div>
+//           <label for="type-image-${index}" class="block">Type Image URL</label>
+//           <input type="url" id="type-image-${index}" class="w-full p-2 border rounded" value="${type.image}">
+//         </div>
+//       `;
+
+//       typesContainer.appendChild(typeDiv);
+//     });
+//   }
+// }
+
+// Handle form submission to update the product
+// document.getElementById("update-product-form").addEventListener("submit", async (e) => {
+//   e.preventDefault();
+
+//   const productId = document.getElementById("product-id").value;
+//   const name = document.getElementById("name").value;
+//   const image = document.getElementById("image").value;
+//   const description = document.getElementById("description").value;
+
+ 
+//   const types = Array.from(document.querySelectorAll("#types-container > div")).map((typeDiv, index) => {
+//     return {
+//       name: typeDiv.querySelector(`#type-name-${index}`).value,
+//       description: typeDiv.querySelector(`#type-description-${index}`).value,
+//       price: typeDiv.querySelector(`#type-price-${index}`).value,
+//       image: typeDiv.querySelector(`#type-image-${index}`).value,
+//     };
+//   });
+
+//   const updatedProduct = {
+//     name,
+//     image,
+//     description,
+//     types,
+//   };
+
+//   try {
+//     const response = await fetch(`http://localhost:5000/products/${productId}`, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(updatedProduct),
+//     });
+
+//     if (!response.ok) throw new Error("Failed to update product");
+
+//     alert("Product updated successfully!");
+//     window.location.href = "dashboard.html";
+//   } catch (error) {
+//     console.error("Error updating product:", error);
+//     alert("Failed to update product.");
+//   }
+// });
+
+// Fetch the product data when the page loads
+// document.addEventListener("DOMContentLoaded", () => {
+//   fetchProductForUpdate();
+// });
+
+
 // Run the appropriate function when the page loads
+
+
 document.addEventListener("DOMContentLoaded", () => {
   fetchProjects();
   fetchProjectDetail();
 });
+
+
+
