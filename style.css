@@ -32,3 +32,11 @@ html {
 .inactive-link {
   color: #4b5563;
 }
+
+#product-item.active,
+#project-item.active,
+#blog-item.active {
+  background-color: #4c51bf; /* Change this to your desired active color */
+  color: white;
+}
+

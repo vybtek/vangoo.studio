@@ -1,4 +1,19 @@
 // Function to fetch and display all products list
+// Confirmation wrappers
+function confirmDeleteProduct(productId) {
+  if (confirm("Are you sure you want to delete this product?")) {
+    deleteProduct(productId);
+  }
+}
+
+function confirmToggleProductActive(productId, isActive) {
+  const action = isActive ? "deactivate" : "activate";
+  if (confirm(`Are you sure you want to ${action} this product?`)) {
+    toggleActive(productId, isActive);
+  }
+}
+
+// Main fetch function
 async function fetchProducts(containerId = "product-grid", view = "default") {
   const productGrid = document.getElementById(containerId);
   if (!productGrid) return;
@@ -31,16 +46,18 @@ async function fetchProducts(containerId = "product-grid", view = "default") {
             </div>
             <div class="flex items-center space-x-2">
               <a href="update-product.html?id=${product.id}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">Edit</a>
-              <button onclick="deleteProduct('${product.id}')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Delete</button>
-              <button onclick="toggleActive('${product.id}', ${isActive})" class="${isActive ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-500 hover:bg-green-600'} text-white px-3 py-1 rounded text-sm">
+              <button onclick="confirmDeleteProduct('${product.id}')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Delete</button>
+              <button onclick="confirmToggleProductActive('${product.id}', ${isActive})" class="${
+                isActive ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-500 hover:bg-green-600'
+              } text-white px-3 py-1 rounded text-sm">
                 ${isActive ? 'Deactivate' : 'Activate'}
               </button>
-              <a href="product-detail.html?id=${product.id}" class="bg-gray-200 text-black px-3 py-1 rounded text-sm">View</a>
+              <a href="product-detail.html?id=${product.id}&source=dashboard" class="bg-gray-200 text-black px-3 py-1 rounded text-sm">View</a>
             </div>
           </div>
         `;
       } else {
-        // Product list view (only active ones shown)
+        // Public-facing product view
         productCard.innerHTML = `
           <a href="product-detail.html?id=${product.id}" class="block transform transition duration-300 hover:scale-105 hover:shadow-xl">
             <div class="mb-6 bg-white shadow-lg overflow-hidden">
@@ -64,24 +81,6 @@ async function fetchProducts(containerId = "product-grid", view = "default") {
 }
 
 
-async function deleteProduct(id) {
-  if (confirm("Are you sure you want to delete this product?")) {
-    try {
-      const response = await fetch(`http://localhost:5000/products/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) throw new Error("Failed to delete product");
-
-      // Optionally reload or re-fetch
-      fetchProducts("dashboard-product-list", "dashboard");
-    } catch (error) {
-      console.error("Delete error:", error);
-      alert("Failed to delete product.");
-    }
-  }
-}
-
 // Function to fetch and display a single product's details
 async function fetchProductDetail() {
   const productDetail = document.getElementById("product-detail");
@@ -89,6 +88,7 @@ async function fetchProductDetail() {
 
   const params = new URLSearchParams(window.location.search);
   const productId = params.get("id");
+  const source = params.get("source"); 
 
   if (!productId) {
     productDetail.innerHTML =
@@ -101,6 +101,23 @@ async function fetchProductDetail() {
     if (!response.ok) throw new Error("Failed to fetch product details");
 
     const product = await response.json();
+
+    // ✅ Check if product is inactive and not from dashboard
+    const isFromDashboard =
+      document.referrer.includes("dashboard") ||
+      source === "dashboard";
+
+    if (!product.active && !isFromDashboard) {
+      productDetail.innerHTML = `
+        <div class="text-center py-16">
+          <h2 class="text-2xl font-bold text-red-600">This product is currently inactive.</h2>
+          <a href="products.html" class="mt-4 inline-block bg-gray-800 text-white px-6 py-2 rounded hover:bg-gray-900">
+            ← Back to Products
+          </a>
+        </div>
+      `;
+      return;
+    }
 
     const typesContent = Array.isArray(product.types) && product.types.length > 0
       ? `
@@ -146,11 +163,31 @@ async function fetchProductDetail() {
   }
 }
 
+
+
 // Run the appropriate function when the page loads
 document.addEventListener("DOMContentLoaded", () => {
   fetchProducts();
   fetchProductDetail();
 });
+
+async function deleteProduct(id) {
+  if (confirm("Are you sure you want to delete this product?")) {
+    try {
+      const response = await fetch(`http://localhost:5000/products/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) throw new Error("Failed to delete product");
+
+      // Optionally reload or re-fetch
+      fetchProducts("dashboard-product-list", "dashboard");
+    } catch (error) {
+      console.error("Delete error:", error);
+      alert("Failed to delete product.");
+    }
+  }
+}
 
 async function toggleActive(productId, currentStatus) {
   try {

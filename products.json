@@ -4,7 +4,7 @@
     "name": "Elegant Wooden Chair",
     "image": "https://ievo.in/wp-content/uploads/2020/07/furniture.png",
     "description": "A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors A beautifully crafted wooden chair with a sleek design, perfect for modern and classic interiors",
-    "active": false,
+    "active": true,
     "types": [
       {
         "name": "Classic Black",
@@ -71,13 +71,6 @@
     "name": "Decorative Wooden Wall Shelf",
     "image": "https://ievo.in/wp-content/uploads/2020/07/decor-luminaries.jpg",
     "description": "A minimalist wooden wall shelf designed to hold books, decor pieces, or small plants.",
-    "active": true
-  },
-  {
-    "id": "0447d71a-3813-425a-addc-5889f69d754a",
-    "name": "Ergonomic Office Chair",
-    "image": "https://ievo.in/wp-content/uploads/2020/07/ose-manufacturing-procurement.jpg",
-    "description": "A high-back ergonomic office chair with lumbar support for maximum comfort during long working hours.",
-    "active": true
+    "active": false
   }
 ]

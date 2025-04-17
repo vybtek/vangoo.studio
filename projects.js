@@ -1,39 +1,19 @@
 // Function to fetch and display all projects
-async function fetchProjects() {
-  const projectGrid = document.getElementById("project-grid");
-  if (!projectGrid) return; // Exit if not on the projects page
-
-  try {
-    const response = await fetch("http://localhost:5000/projects");
-    if (!response.ok) throw new Error("Failed to fetch projects");
-
-    const projects = await response.json();
-    projectGrid.innerHTML = ""; // Clear previous content
-
-    projects.forEach((project) => {
-      const projectCard = document.createElement("div");
-      projectCard.classList.add("relative", "p-4");
-
-      projectCard.innerHTML = `
-          <div class="bg-gray-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 p-6">
-            <img src="${project.image}" alt="${project.title}" class="w-full h-60 object-cover rounded-lg">
-            <div class="mt-4">
-              <h3 class="text-xl font-semibold text-gray-900">${project.title}</h3>
-              <a href="project-detail.html?id=${project.id}" 
-                 class="block w-full text-center bg-gray-900 text-white font-medium px-5 py-3 rounded-lg mt-5 transition-all duration-300 hover:bg-gray-800">
-                View Details
-              </a>
-            </div>
-          </div>
-        `;
-
-      projectGrid.appendChild(projectCard);
-    });
-  } catch (error) {
-    console.error(error);
+// Confirmation wrappers
+function confirmDeleteProject(projectId) {
+  if (confirm("Are you sure you want to delete this project?")) {
+    deleteProject(projectId);
   }
 }
 
+function confirmToggleProjectActive(projectId, isActive) {
+  const action = isActive ? "deactivate" : "activate";
+  if (confirm(`Are you sure you want to ${action} this project?`)) {
+    toggleProjectActive(projectId, isActive);
+  }
+}
+
+// Main fetch function
 async function fetchProjects(containerId = "project-grid", view = "default") {
   const projectGrid = document.getElementById(containerId);
   if (!projectGrid) return;
@@ -70,10 +50,10 @@ async function fetchProjects(containerId = "project-grid", view = "default") {
               <a href="update-project.html?id=${
                 project.id
               }" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">Edit</a>
-              <button onclick="deleteProject('${
+              <button onclick="confirmDeleteProject('${
                 project.id
               }')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Delete</button>
-              <button onclick="toggleProjectActive('${
+              <button onclick="confirmToggleProjectActive('${
                 project.id
               }', ${isActive})" class="${
           isActive
@@ -84,25 +64,25 @@ async function fetchProjects(containerId = "project-grid", view = "default") {
               </button>
               <a href="project-detail.html?id=${
                 project.id
-              }" class="bg-gray-200 text-black px-3 py-1 rounded text-sm">View</a>
+              }&source=dashboard" class="bg-gray-200 text-black px-3 py-1 rounded text-sm">View</a>
             </div>
           </div>
         `;
       } else {
         projectCard.innerHTML = `
           <a href="project-detail.html?id=${project.id}" class="block">
-  <div class="bg-gray-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 p-6">
-    <img src="${project.image}" alt="${project.title}" class="w-full h-60 object-cover rounded-lg">
-    <div class="mt-4">
-      <h3 class="text-xl font-semibold text-gray-900">${project.title}</h3>
-      <div class="mt-5 text-center">
-        <span class="block w-full text-center bg-gray-900 text-white font-medium px-5 py-3 rounded-lg transition-all duration-300 hover:bg-gray-800">
-          View Details
-        </span>
-      </div>
-    </div>
-  </div>
-</a>
+            <div class="bg-gray-100 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 p-6">
+              <img src="${project.image}" alt="${project.title}" class="w-full h-60 object-cover rounded-lg">
+              <div class="mt-4">
+                <h3 class="text-xl font-semibold text-gray-900">${project.title}</h3>
+                <div class="mt-5 text-center">
+                  <span class="block w-full text-center bg-gray-900 text-white font-medium px-5 py-3 rounded-lg transition-all duration-300 hover:bg-gray-800">
+                    View Details
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
         `;
       }
 
@@ -113,13 +93,13 @@ async function fetchProjects(containerId = "project-grid", view = "default") {
   }
 }
 
-// Function to fetch and display a single project's details
 async function fetchProjectDetail() {
   const projectDetail = document.getElementById("project-detail");
-  if (!projectDetail) return; // Exit if not on the project details page
+  if (!projectDetail) return;
 
   const params = new URLSearchParams(window.location.search);
   const projectId = params.get("id");
+  const source = params.get("source"); // Get `source` param to check if it's from the dashboard
 
   if (!projectId) {
     projectDetail.innerHTML =
@@ -133,10 +113,25 @@ async function fetchProjectDetail() {
 
     const project = await response.json();
 
+    // Check if project is inactive and not from dashboard
+    const isFromDashboard =
+      document.referrer.includes("dashboard") || source === "dashboard";
+
+    if (!project.active && !isFromDashboard) {
+      projectDetail.innerHTML = `
+        <div class="text-center py-12">
+          <h2 class="text-2xl font-bold text-red-600">This project is currently inactive.</h2>
+          <a href="projects.html" class="mt-4 inline-block bg-gray-800 text-white px-5 py-2 rounded hover:bg-gray-900">
+            ← Back to Projects
+          </a>
+        </div>
+      `;
+      return;
+    }
+
     // Alternating left-right layout for additional images with descriptions
-    const imagesWithContent =
-      project.images && project.images.length > 0
-        ? `
+    const imagesWithContent = project.images?.length
+      ? ` 
         <section class="max-w-6xl mx-auto mt-16">
           <h2 class="text-3xl font-bold text-center text-gray-800">More About This Project</h2>
           <div class="mt-8 space-y-12">
@@ -166,12 +161,11 @@ async function fetchProjectDetail() {
           </div>
         </section>
       `
-        : "";
+      : "";
 
     // Project Gallery Section (With Swiper Slider)
-    const imagesSection =
-      project.images && project.images.length > 0
-        ? `
+    const imagesSection = project.images?.length
+      ? `
         <section class="max-w-6xl mx-auto mt-16">
           <h2 class="text-3xl font-bold text-center text-gray-800">Project Gallery</h2>
           <div class="swiper-container mt-8">
@@ -193,11 +187,10 @@ async function fetchProjectDetail() {
           </div>
         </section>
       `
-        : "";
+      : "";
 
     projectDetail.innerHTML = `
       <div class="max-w-full w-full mx-auto bg-white overflow-hidden">
-        
         <!-- Hero Section (Banner) -->
         <section class="relative w-full h-[450px] md:h-[600px] overflow-hidden flex items-center justify-center">
           <img src="${project.image}" class="absolute inset-0 w-full h-full object-cover brightness-75 rounded-md">
@@ -212,10 +205,8 @@ async function fetchProjectDetail() {
           <p class="mt-6 text-lg leading-relaxed opacity-90">${project.description}</p>
         </section>
 
-        <!-- Alternating Image and Description Section -->
         ${imagesWithContent}
 
-        <!-- Project Gallery Section (with slider) -->
         ${imagesSection}
 
         <!-- Back Button -->
@@ -228,7 +219,7 @@ async function fetchProjectDetail() {
       </div>
     `;
 
-    // Initialize Swiper after content is loaded
+    // Initialize Swiper
     setTimeout(() => {
       if (document.querySelector(".swiper-container")) {
         new Swiper(".swiper-container", {
@@ -237,20 +228,16 @@ async function fetchProjectDetail() {
             delay: 3000,
             disableOnInteraction: false,
           },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
           pagination: {
             el: ".swiper-pagination",
             clickable: true,
           },
-          slidesPerView: 1, // Default for small screens
+          slidesPerView: 1,
           spaceBetween: 15,
           breakpoints: {
-            640: { slidesPerView: 1, spaceBetween: 20 }, // Phones
-            768: { slidesPerView: 2, spaceBetween: 25 }, // Tablets
-            1024: { slidesPerView: 3, spaceBetween: 30 }, // Desktop
+            640: { slidesPerView: 1, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 25 },
+            1024: { slidesPerView: 3, spaceBetween: 30 },
           },
         });
       }
@@ -261,6 +248,10 @@ async function fetchProjectDetail() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  fetchProjects();
+  fetchProjectDetail();
+});
 
 async function deleteProject(id) {
   if (confirm("Are you sure you want to delete this project?")) {
@@ -274,155 +265,159 @@ async function deleteProject(id) {
       location.reload();
 
       // Option 2 (better): Re-fetch projects without reload
-      // await fetchProjects("project-grid", "dashboard");
+      await fetchProjects("project-grid", "dashboard");
     } catch (error) {
       console.error("Error deleting project:", error);
     }
   }
 }
 
+async function toggleProjectActive(projectId, currentStatus) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/projects/${projectId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ active: !currentStatus }),
+      }
+    );
 
-// async function toggleActive(productId, currentStatus) {
-//   try {
-//     const response = await fetch(`http://localhost:5000/products/${productId}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ active: !currentStatus }),
-//     });
+    if (!response.ok) throw new Error("Failed to update project status");
 
-//     if (!response.ok) throw new Error("Failed to update product status");
+    // Refresh the dashboard list
+    fetchProjects("dashboard-project-list", "dashboard");
+  } catch (error) {
+    console.error("Error toggling project active status:", error);
+    alert("Failed to update project status.");
+  }
+}
+// Fetch project details for update
+async function fetchProjectForUpdate() {
+  const params = new URLSearchParams(window.location.search);
+  const projectId = params.get("id");
 
-//     // Refresh dashboard list
-//     fetchProducts("dashboard-product-list", "dashboard");
-//   } catch (error) {
-//     console.error("Error toggling product active status:", error);
-//     alert("Failed to update product status.");
-//   }
-// }
+  if (!projectId) {
+    alert("Project not found!");
+    return;
+  }
 
-// Fetch product by ID to populate the update form
-// async function fetchProductForUpdate() {
-//   const params = new URLSearchParams(window.location.search);
-//   const productId = params.get("id");
+  try {
+    const response = await fetch(`http://localhost:5000/projects/${projectId}`);
+    if (!response.ok) throw new Error("Failed to fetch project details");
 
-//   if (!productId) {
-//     alert("Product not found!");
-//     return;
-//   }
+    const project = await response.json();
+    populateProjectForm(project);
+  } catch (error) {
+    console.error("Error fetching project:", error);
+    alert("Failed to load project data.");
+  }
+}
 
-//   try {
-//     const response = await fetch(`http://localhost:5000/products/${productId}`);
-//     if (!response.ok) throw new Error("Failed to fetch product details");
+// Populate the form with project data
+function populateProjectForm(project) {
+  document.getElementById("project-id-display").value = project.id;
+  document.getElementById("title").value = project.title;
+  document.getElementById("image").value = project.image;
+  document.getElementById("description").value = project.description;
+  document.getElementById("additionalContent").value =
+    project.additionalContent;
 
-//     const product = await response.json();
-//     populateForm(product);
-//   } catch (error) {
-//     console.error("Error fetching product:", error);
-//     alert("Failed to load product data.");
-//   }
-// }
+  // Populate multiple images
+  const imageInputsContainer = document.getElementById("imageInputs");
+  if (imageInputsContainer && project.images && Array.isArray(project.images)) {
+    imageInputsContainer.innerHTML = ""; // Clear previous inputs
 
-// Populate the update form with product data
-// function populateForm(product) {
-//   document.getElementById("product-id").value = product.id;
-//   document.getElementById("name").value = product.name;
-//   document.getElementById("image").value = product.image;
-//   document.getElementById("description").value = product.description;
+    project.images.forEach((img) => {
+      const imgHtml = `
+        <div class="image-set space-y-4 p-4 border border-gray-200 rounded-lg shadow-sm">
+          <div class="space-y-2">
+            <input type="url" class="url w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Image URL" value="${
+              img.url || ""
+            }" />
+          </div>
+          <div class="space-y-2">
+            <input type="text" class="caption w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Caption" value="${
+              img.caption || ""
+            }" />
+          </div>
+          <div class="space-y-2">
+            <textarea class="description w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Description">${
+              img.description || ""
+            }</textarea>
+          </div>
+        </div>
+      `;
+      imageInputsContainer.insertAdjacentHTML("beforeend", imgHtml);
+    });
+  }
+}
 
-//   // Populate the product types (if any)
-//   const typesContainer = document.getElementById("types-container");
-//   typesContainer.innerHTML = ""; // Clear previous types
+// Handle form submission for project update
+document
+  .getElementById("update-project-form")
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-//   if (Array.isArray(product.types) && product.types.length > 0) {
-//     product.types.forEach((type, index) => {
-//       const typeDiv = document.createElement("div");
-//       typeDiv.classList.add("space-y-2");
+    const projectId = document.getElementById("project-id-display").value;
+    const title = document.getElementById("title").value;
+    const image = document.getElementById("image").value;
+    const description = document.getElementById("description").value;
+    const additionalContent =
+      document.getElementById("additionalContent").value;
 
-//       typeDiv.innerHTML = `
-//         <h4 class="font-semibold">Product Type ${index + 1}</h4>
-//         <div>
-//           <label for="type-name-${index}" class="block">Type Name</label>
-//           <input type="text" id="type-name-${index}" class="w-full p-2 border rounded" value="${type.name}">
-//         </div>
-//         <div>
-//           <label for="type-description-${index}" class="block">Type Description</label>
-//           <textarea id="type-description-${index}" class="w-full p-2 border rounded">${type.description}</textarea>
-//         </div>
-//         <div>
-//           <label for="type-price-${index}" class="block">Type Price</label>
-//           <input type="number" id="type-price-${index}" class="w-full p-2 border rounded" value="${type.price}">
-//         </div>
-//         <div>
-//           <label for="type-image-${index}" class="block">Type Image URL</label>
-//           <input type="url" id="type-image-${index}" class="w-full p-2 border rounded" value="${type.image}">
-//         </div>
-//       `;
+    // Collect the project images data
+    const imageFields = document
+      .getElementById("imageInputs")
+      .querySelectorAll(".image-set");
+    const images = Array.from(imageFields).map((field) => {
+      const urlField = field.querySelector(".url");
+      const captionField = field.querySelector(".caption");
+      const descriptionField = field.querySelector(".description");
 
-//       typesContainer.appendChild(typeDiv);
-//     });
-//   }
-// }
+      return {
+        url: urlField ? urlField.value : "",
+        caption: captionField ? captionField.value : "",
+        description: descriptionField ? descriptionField.value : "",
+      };
+    });
 
-// Handle form submission to update the product
-// document.getElementById("update-product-form").addEventListener("submit", async (e) => {
-//   e.preventDefault();
+    // Ensure you only send non-empty images
+    const nonEmptyImages = images.filter(
+      (image) => image.url || image.caption || image.description
+    );
 
-//   const productId = document.getElementById("product-id").value;
-//   const name = document.getElementById("name").value;
-//   const image = document.getElementById("image").value;
-//   const description = document.getElementById("description").value;
+    const updatedProject = {
+      title,
+      image,
+      description,
+      images: nonEmptyImages, // Only send non-empty images
+      additionalContent,
+    };
 
- 
-//   const types = Array.from(document.querySelectorAll("#types-container > div")).map((typeDiv, index) => {
-//     return {
-//       name: typeDiv.querySelector(`#type-name-${index}`).value,
-//       description: typeDiv.querySelector(`#type-description-${index}`).value,
-//       price: typeDiv.querySelector(`#type-price-${index}`).value,
-//       image: typeDiv.querySelector(`#type-image-${index}`).value,
-//     };
-//   });
+    try {
+      const response = await fetch(
+        `http://localhost:5000/projects/${projectId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedProject),
+        }
+      );
 
-//   const updatedProduct = {
-//     name,
-//     image,
-//     description,
-//     types,
-//   };
+      if (!response.ok) throw new Error("Failed to update project");
 
-//   try {
-//     const response = await fetch(`http://localhost:5000/products/${productId}`, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(updatedProduct),
-//     });
+      alert("Project updated successfully!");
+      window.location.href = "project-list.html";
+    } catch (error) {
+      console.error("Error updating project:", error);
+      alert("Failed to update project.");
+    }
+  });
 
-//     if (!response.ok) throw new Error("Failed to update product");
-
-//     alert("Product updated successfully!");
-//     window.location.href = "dashboard.html";
-//   } catch (error) {
-//     console.error("Error updating product:", error);
-//     alert("Failed to update product.");
-//   }
-// });
-
-// Fetch the product data when the page loads
-// document.addEventListener("DOMContentLoaded", () => {
-//   fetchProductForUpdate();
-// });
-
-
-// Run the appropriate function when the page loads
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  fetchProjects();
-  fetchProjectDetail();
-});
-
-
-
+// Fetch the project data when the page loads
+document.addEventListener("DOMContentLoaded", fetchProjectForUpdate);
